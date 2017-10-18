@@ -1,5 +1,7 @@
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
+
 
 export class PlatformMock {
   public ready(): Promise<string> {
@@ -77,7 +79,21 @@ export class SplashScreenMock extends SplashScreen {
     return;
   }
 }
-
+export class NavParamsMock {
+  static returnParam = null;
+  public get(key): any {
+    if (NavParamsMock.returnParam) {
+       return NavParamsMock.returnParam
+    }
+    return 'default';
+  }
+  static setParams(value){
+    NavParamsMock.returnParam = value;
+  }
+}
+export declare class StorageMock {
+  static instance(key?: any, value?: any): any;
+}
 export class NavMock {
  
   public pop(): any {
