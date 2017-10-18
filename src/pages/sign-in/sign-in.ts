@@ -34,7 +34,9 @@ export class SignInPage {
       this.fbData = res;
     })
   }
+
   fbLogout() {
-    
-      }
+    this.angularFireAuth.auth.signOut();
+    this.fbLoggedIn = false;
+  }
 }
