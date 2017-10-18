@@ -16,7 +16,8 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
-
+www/
+.sourcemaps/
 # nyc test coverage
 .nyc_output
 
@@ -35,6 +36,12 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+
+# Extra Ionic 3 directories
+www/
+.sourcemaps/
+
+package-lock.json
 
 # Typescript v1 declaration files
 typings/
