@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Restaurant
+      Home
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,8 +9,9 @@
 <ion-content padding>
   <img src="http://www.kavach.mobi/images/Restaurants.jpg"/>
 <ion-list>
-    <button ion-button (click)= "mealPage()">Meals </button>
-    
+  
+  <button ion-button (click)= "mealPage()">Meals </button>
   <button ion-button (click)= "reqPage()">Request </button>
+  <button ion-button block round (click)='goToMealsPage()'>Go To Meals</button>
 </ion-list>
 </ion-content>
