@@ -38,7 +38,10 @@ var firebaseConfig = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicPageModule.forChild(RestMealsPage),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,6 +54,7 @@ var firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
