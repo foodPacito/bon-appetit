@@ -10,7 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 
 
-import { MealsPage } from './meals';
+import { RequestsPage } from './requests';
 import {
   PlatformMock,
   StatusBarMock,
@@ -25,9 +25,9 @@ describe('MealsPage Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MealsPage],
+      declarations: [RequestsPage],
       imports: [
-        IonicModule.forRoot(MealsPage)
+        IonicModule.forRoot(RequestsPage)
       ],
       providers: [
         { provide: StatusBar, useClass: StatusBarMock },
@@ -41,17 +41,13 @@ describe('MealsPage Component', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MealsPage);
+    fixture = TestBed.createComponent(RequestsPage);
     component = fixture.componentInstance;
   });
 
   it('should be created', () => {
-    expect(component instanceof MealsPage).toBe(true);
+      console.log(fixture)
+    expect(component instanceof RequestsPage).toBe(true);
   });
-  it('should add a new meal',async () => {
-      let previous = component.Meals.length
-      console.log(component.storage.set())
-      expect(component.Meals.length).toEqual(previous + 1)
-  })
  
 }); 
