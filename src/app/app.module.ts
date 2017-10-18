@@ -4,9 +4,10 @@ import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule } from 'ionic
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+
+// import { AngularFireModule } from 'angularfire2';
+// import { AngularFireAuthModule } from 'angularfire2/auth';
+// import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 
 
 import { MyApp } from './app.component';
@@ -15,6 +16,10 @@ import { HomePage } from '../pages/home/home';
 import { RestMealsPage } from '../pages/rest-meals/rest-meals'
 import { RequestsPage } from '../pages/requests/requests';
 import { MealsPage } from '../pages/meals/meals';
+import { OrderPage } from '../pages/order/order';
+import { DelivaryPage } from '../pages/delivary/delivary';
+import { HandPickPage } from '../pages/hand-pick/hand-pick';
+import { UserHomePage } from '../pages/user-home/user-home';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBnH6BJVQHmst0wH2in3G4ftWxG2-m5r34",
@@ -32,7 +37,11 @@ var firebaseConfig = {
     HomePage,
     RestMealsPage,
     RequestsPage,
-    MealsPage
+    MealsPage,
+    OrderPage,
+    DelivaryPage,
+    HandPickPage,
+    UserHomePage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +55,11 @@ var firebaseConfig = {
     HomePage,
     RestMealsPage,
     RequestsPage,
-    MealsPage
+    MealsPage,
+    OrderPage,
+    DelivaryPage,
+    HandPickPage,
+    UserHomePage
   ],
   providers: [
     StatusBar,

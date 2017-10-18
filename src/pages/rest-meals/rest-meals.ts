@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { OrderPage } from '../order/order';
 
 /**
  * Generated class for the RestMealsPage page.
@@ -19,6 +20,9 @@ export class RestMealsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RestMealsPage');
+  }
+  order(){
+  	this.navCtrl.push(OrderPage);
   }
 
 }
