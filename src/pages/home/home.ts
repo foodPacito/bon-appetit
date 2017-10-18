@@ -8,12 +8,12 @@ import { MealsPage } from '../meals/meals';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  fake
 
   constructor(public navCtrl: NavController) {
 
   }
 reqPage(){
-  console.log("hi")
   this.navCtrl.push(RequestsPage);
 };
 mealPage(){
