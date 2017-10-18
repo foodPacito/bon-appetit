@@ -5,9 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 
-// import { AngularFireModule } from 'angularfire2';
-// import { AngularFireAuthModule } from 'angularfire2/auth';
-// import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 
 
 import { MyApp } from './app.component';
@@ -20,6 +20,7 @@ import { OrderPage } from '../pages/order/order';
 import { DelivaryPage } from '../pages/delivary/delivary';
 import { HandPickPage } from '../pages/hand-pick/hand-pick';
 import { UserHomePage } from '../pages/user-home/user-home';
+import { SignInPage } from '../pages/sign-in/sign-in';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBnH6BJVQHmst0wH2in3G4ftWxG2-m5r34",
@@ -41,7 +42,8 @@ var firebaseConfig = {
     OrderPage,
     DelivaryPage,
     HandPickPage,
-    UserHomePage
+    UserHomePage,
+    SignInPage
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ var firebaseConfig = {
     OrderPage,
     DelivaryPage,
     HandPickPage,
-    UserHomePage
+    UserHomePage,
+    SignInPage
   ],
   providers: [
     StatusBar,
