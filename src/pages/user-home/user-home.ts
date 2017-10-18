@@ -1,28 +1,29 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { OrderPage } from '../order/order';
+import { RestMealsPage } from '../rest-meals/rest-meals'
 
 /**
- * Generated class for the RestMealsPage page.
+ * Generated class for the UserHomePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
+@IonicPage()
 @Component({
-  selector: 'page-rest-meals',
-  templateUrl: 'rest-meals.html',
+  selector: 'page-user-home',
+  templateUrl: 'user-home.html',
 })
-export class RestMealsPage {
+export class UserHomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RestMealsPage');
+    console.log('ionViewDidLoad UserHomePage');
   }
-  order(){
-  	this.navCtrl.push(OrderPage);
+  goToMealsPage () {
+  	this.navCtrl.push(RestMealsPage)
   }
-
+  
 }

@@ -12,10 +12,6 @@ import { MealsPage } from '../meals/meals';
 export class HomePage {
   constructor(public navCtrl: NavController) {
   }
-  
-  goToMealsPage () {
-  	this.navCtrl.push(RestMealsPage)
-  }
   reqPage(){
     console.log("hi")
     this.navCtrl.push(RequestsPage);

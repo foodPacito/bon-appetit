@@ -14,5 +14,32 @@
 
 
 <ion-content padding>
+  <ion-list radio-group>
+  <ion-list-header>
+    resturant 1
+  </ion-list-header>
+
+  <ion-item>
+    <ion-label>meal1</ion-label>
+    <ion-radio checked="true" value="go"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>meal2</ion-label>
+    <ion-radio value="rust"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>meal3</ion-label>
+    <ion-radio value="python"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>meal4</ion-label>
+    <ion-radio value="python"></ion-radio>
+  </ion-item>
+</ion-list>
+
+<button ion-button (click)="order()" >ordar</button>
 
 </ion-content>
