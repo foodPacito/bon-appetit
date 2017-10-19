@@ -17,7 +17,10 @@ import firebase from 'firebase';
 export class SignInPage {
 
   fbLoggedIn: boolean = false;
+  googleLogedin: boolean = false;
   fbData;
+  googledata;
+  googlprovider = new firebase.auth.GoogleAuthProvider();
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -39,4 +42,20 @@ export class SignInPage {
     this.angularFireAuth.auth.signOut();
     this.fbLoggedIn = false;
   }
+
+  googleLogin(){
+    this.angularFireAuth.auth.signInWithPopup(this.googlprovider).then(res=>{
+      this.googleLogedin=true;
+      this.googledata=res;
+      console.log('login from google')
+      console.log(res);
+    })
+  }
+
+  googleLogout(){
+    this.angularFireAuth.auth.signOut()
+    this.googleLogedin = false;
+    console.log('logout from google')
+  }  
+
 }
