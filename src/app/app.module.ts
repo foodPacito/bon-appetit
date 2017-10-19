@@ -5,16 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 
-<<<<<<< HEAD
-// import { AngularFireModule } from 'angularfire2';
-// import { AngularFireAuthModule } from 'angularfire2/auth';
-// import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
-=======
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
->>>>>>> 2e495ff2870f92d0ffb4a011b2362ce73cf22d75
-
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -26,10 +19,7 @@ import { OrderPage } from '../pages/order/order';
 import { DelivaryPage } from '../pages/delivary/delivary';
 import { HandPickPage } from '../pages/hand-pick/hand-pick';
 import { UserHomePage } from '../pages/user-home/user-home';
-<<<<<<< HEAD
-=======
 import { SignInPage } from '../pages/sign-in/sign-in';
->>>>>>> 2e495ff2870f92d0ffb4a011b2362ce73cf22d75
 
 var firebaseConfig = {
   apiKey: "AIzaSyBnH6BJVQHmst0wH2in3G4ftWxG2-m5r34",
@@ -51,12 +41,8 @@ var firebaseConfig = {
     OrderPage,
     DelivaryPage,
     HandPickPage,
-<<<<<<< HEAD
-    UserHomePage
-=======
     UserHomePage,
     SignInPage
->>>>>>> 2e495ff2870f92d0ffb4a011b2362ce73cf22d75
   ],
   imports: [
     BrowserModule,
@@ -77,12 +63,8 @@ var firebaseConfig = {
     OrderPage,
     DelivaryPage,
     HandPickPage,
-<<<<<<< HEAD
-    UserHomePage
-=======
     UserHomePage,
     SignInPage
->>>>>>> 2e495ff2870f92d0ffb4a011b2362ce73cf22d75
   ],
   providers: [
     StatusBar,

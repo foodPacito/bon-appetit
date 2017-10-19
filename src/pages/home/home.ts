@@ -12,14 +12,12 @@ import { MealsPage } from '../meals/meals';
 export class HomePage {
   constructor(public navCtrl: NavController) {
   }
-<<<<<<< HEAD
-=======
+
 
   
   goToMealsPage () {
   	this.navCtrl.push(RestMealsPage)
   }
->>>>>>> 2e495ff2870f92d0ffb4a011b2362ce73cf22d75
   reqPage(){
     console.log("hi")
     this.navCtrl.push(RequestsPage);

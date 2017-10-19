@@ -1,14 +1,14 @@
 webpackJsonp([4],{
 
-/***/ 272:
+/***/ 491:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DelivaryPageModule", function() { return DelivaryPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MealsPageModule", function() { return MealsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__delivary__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__meals__ = __webpack_require__(149);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var DelivaryPageModule = (function () {
-    function DelivaryPageModule() {
+var MealsPageModule = (function () {
+    function MealsPageModule() {
     }
-    return DelivaryPageModule;
+    return MealsPageModule;
 }());
-DelivaryPageModule = __decorate([
+MealsPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__delivary__["a" /* DelivaryPage */],
+            __WEBPACK_IMPORTED_MODULE_2__meals__["a" /* MealsPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__delivary__["a" /* DelivaryPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__meals__["a" /* MealsPage */]),
         ],
     })
-], DelivaryPageModule);
+], MealsPageModule);
 
-//# sourceMappingURL=delivary.module.js.map
+//# sourceMappingURL=meals.module.js.map
 
 /***/ })
 
