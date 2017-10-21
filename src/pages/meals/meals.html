@@ -14,12 +14,30 @@
 
 
 <ion-content padding>
-<ion-list *ngFor= "let Meal of Meals">
-  <ion-item>
-    {{Meal[0]}}, {{Meal[1]}}
+
+  
+<ion-item>
+  <ion-label>Meal</ion-label>
+  <ion-select interface="popover" [(ngModel)]="Type" >
+    <ion-option *ngFor = "let meal of meals" value="{{meal.name}}">{{meal.name}}</ion-option>
+  </ion-select>
+</ion-item>
+
+<ion-item>
+    <ion-label>Quantity</ion-label>
+    <ion-select interface="popover" [(ngModel)]="Num" >
+      <ion-option *ngFor = "let num of nums" value="{{num}}">{{num}}</ion-option>
+    </ion-select>
   </ion-item>
-</ion-list>
-<ion-input type= "text" [(ngModel)]="Type"> </ion-input>
-<ion-input type= "number" [(ngModel)]="Num"> </ion-input>
+
 <button ion-button (click) ="addMeal(Type, Num)">Add</button>
+<button ion-button (click) ="removeMeal(Type, Num)">Remove</button>
+
+<ion-list *ngFor= "let Meal of show">
+    <ion-item class="view">
+      Meal: <strong>{{Meal.name}}</strong> 
+      for <strong>{{Meal.quantity}}</strong> person(s).
+    </ion-item>
+  </ion-list>
+
 </ion-content>
