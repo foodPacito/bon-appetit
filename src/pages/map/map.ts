@@ -27,6 +27,7 @@ export class MapPage {
   }
 showMap() {
 	//location
+
  const location = new google.maps.LatLng(31.95638607801807, 35.94535052776337);	
  	//map options
  const options = {
