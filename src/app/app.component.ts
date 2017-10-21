@@ -12,7 +12,6 @@ import { MapPage } from '../pages/map/map';
 })
 export class MyApp {
   rootPage:any = MapPage;
-
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

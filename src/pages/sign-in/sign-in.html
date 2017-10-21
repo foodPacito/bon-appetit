@@ -12,8 +12,10 @@
 
 </ion-header>
 
-
 <ion-content padding>
-  <button ion-button block round (click)='fbLogin()'>Log In</button>    
+  <button ion-button block round *ngIf=!fbLoggedIn (click)='fbLogin()'>Log In</button>
+  <button ion-button block round *ngIf=fbLoggedIn (click)='fbLogout()'>Log Out</button>
+  <button ion-button block round *ngIf=!googleLogedin (click)='googleLogin()' >google Login</button>
+  <button ion-button block round *ngIf=googleLogedin (click)='googleLogout()' >google Logout</button>
 </ion-content>
 <!-- https://fireapp-14c15.firebaseapp.com/__/auth/handler -->

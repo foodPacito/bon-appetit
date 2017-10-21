@@ -18,7 +18,6 @@ export class HomePage {
   goToMealsPage () {
   	this.navCtrl.push(RestMealsPage)
   }
-
   reqPage(){
     console.log("hi")
     this.navCtrl.push(RequestsPage);
