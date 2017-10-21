@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
@@ -15,7 +15,7 @@ import firebase from 'firebase';
   templateUrl: 'sign-in.html',
 })
 export class SignInPage {
-
+  
   fbLoggedIn: boolean = false;
   googleLogedin: boolean = false;
   fbData;
@@ -24,23 +24,38 @@ export class SignInPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public angularFireAuth: AngularFireAuth) {
+    public angularFireAuth: AngularFireAuth,
+    public changeDetector: ChangeDetectorRef) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SignInPage');
   }
 
   fbLogin() {
-    this.angularFireAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
+    this.fbAuth.addScope('user_friends');    
+    this.angularFireAuth.auth.signInWithPopup(this.fbAuth).then(res => {
       this.fbLoggedIn = true;
       this.fbData = res;
-    })
+      this.changeDetector.detectChanges();
+    }).catch(err => {
+      console.log('error =======> ' + err);
+    });
+  }
+  fbLogout() {
+    this.angularFireAuth.auth.signOut().catch(console.log);
+    this.fbLoggedIn = false;
+    this.changeDetector.detectChanges();
   }
 
-  fbLogout() {
-    this.angularFireAuth.auth.signOut();
-    this.fbLoggedIn = false;
+  googleLogin() {
+    this.angularFireAuth.auth.signInWithPopup(this.gAuth).then(res => {
+      this.gLoggedIn = true;
+      this.changeDetector.detectChanges();
+    }).catch(console.log);
+  }
+  googleLogout() {
+    this.angularFireAuth.auth.signOut().catch(console.log);
+    this.changeDetector.detectChanges();
   }
 
   googleLogin(){

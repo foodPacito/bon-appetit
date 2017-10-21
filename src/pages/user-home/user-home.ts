@@ -19,9 +19,6 @@ export class UserHomePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UserHomePage');
-  }
   goToMealsPage () {
   	this.navCtrl.push(RestMealsPage)
   }
