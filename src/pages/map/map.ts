@@ -27,16 +27,19 @@ export class MapPage {
   }
 showMap() {
 	//location
- const location = new google.maps.LatLng(51.507351, -0.127758);	
+ const location = new google.maps.LatLng(31.95638607801807, 35.94535052776337);	
  	//map options
  const options = {
  	center: location,
  	zoom : 15,
  	streetViewControl : false,
- 	mapTypeId :'hybrid' ////'satellite' ///'roadmap'
+ 	mapTypeId :'terrain'///'hybrid' ////'satellite' ///'roadmap'
  };
  const map = new google.maps.Map(this.mapRef.nativeElement, options);
+ 	setTimeout(() => map.setMapTypeId('satellite'),3000);
+
  this.addMarker(location, map);
+
 }
 addMarker(position, map) {
 	return new google.maps.Marker({
