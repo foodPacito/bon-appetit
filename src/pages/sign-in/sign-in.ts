@@ -17,11 +17,10 @@ import firebase from 'firebase';
 export class SignInPage {
   
   fbLoggedIn: boolean = false;
-  gLoggedIn: boolean = false;
-  LoggedIn: boolean = this.gLoggedIn || this.fbLoggedIn;
+  googleLogedin: boolean = false;
   fbData;
-  fbAuth = new firebase.auth.FacebookAuthProvider();
-  gAuth = new firebase.auth.GoogleAuthProvider();  
+  googledata;
+  googlprovider = new firebase.auth.GoogleAuthProvider();
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -58,4 +57,20 @@ export class SignInPage {
     this.angularFireAuth.auth.signOut().catch(console.log);
     this.changeDetector.detectChanges();
   }
+
+  googleLogin(){
+    this.angularFireAuth.auth.signInWithPopup(this.googlprovider).then(res=>{
+      this.googleLogedin=true;
+      this.googledata=res;
+      console.log('login from google')
+      console.log(res);
+    })
+  }
+
+  googleLogout(){
+    this.angularFireAuth.auth.signOut()
+    this.googleLogedin = false;
+    console.log('logout from google')
+  }  
+
 }
