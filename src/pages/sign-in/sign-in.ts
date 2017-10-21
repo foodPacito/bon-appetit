@@ -20,6 +20,7 @@ export class SignInPage {
   googleLogedin: boolean = false;
   fbData;
   googledata;
+  fbAuth = new firebase.auth.FacebookAuthProvider();
   googlprovider = new firebase.auth.GoogleAuthProvider();
   constructor(
     public navCtrl: NavController,
@@ -41,36 +42,27 @@ export class SignInPage {
       console.log('error =======> ' + err);
     });
   }
+  
   fbLogout() {
     this.angularFireAuth.auth.signOut().catch(console.log);
     this.fbLoggedIn = false;
     this.changeDetector.detectChanges();
   }
 
-  googleLogin() {
-    this.angularFireAuth.auth.signInWithPopup(this.gAuth).then(res => {
-      this.gLoggedIn = true;
-      this.changeDetector.detectChanges();
-    }).catch(console.log);
-  }
-  googleLogout() {
-    this.angularFireAuth.auth.signOut().catch(console.log);
-    this.changeDetector.detectChanges();
-  }
-
   googleLogin(){
     this.angularFireAuth.auth.signInWithPopup(this.googlprovider).then(res=>{
-      this.googleLogedin=true;
-      this.googledata=res;
-      console.log('login from google')
-      console.log(res);
+    this.googleLogedin=true;
+    this.googledata=res;
+    console.log('login from google')
+    console.log(res);
+    this.changeDetector.detectChanges();
     })
   }
 
   googleLogout(){
     this.angularFireAuth.auth.signOut()
     this.googleLogedin = false;
-    console.log('logout from google')
+    console.log('logout from google');
+    this.changeDetector.detectChanges();
   }  
-
 }
