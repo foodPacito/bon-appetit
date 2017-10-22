@@ -21,6 +21,7 @@ import { HandPickPage } from '../pages/hand-pick/hand-pick';
 import { UserHomePage } from '../pages/user-home/user-home';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { MapPage } from '../pages/map/map';
+import { RestReviewsPage } from '../pages/rest-reviews/rest-reviews';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBnH6BJVQHmst0wH2in3G4ftWxG2-m5r34",
@@ -44,7 +45,8 @@ var firebaseConfig = {
     HandPickPage,
     UserHomePage,
     SignInPage,
-    MapPage
+    MapPage,
+    RestReviewsPage
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ var firebaseConfig = {
     HandPickPage,
     UserHomePage,
     SignInPage,
-    MapPage
+    MapPage,
+    RestReviewsPage
   ],
   providers: [
     StatusBar,
