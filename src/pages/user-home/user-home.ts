@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestMealsPage } from '../rest-meals/rest-meals'
-
+import { AngularFireDatabase } from 'angularfire2/database';
 /**
  * Generated class for the UserHomePage page.
  *
@@ -15,12 +15,24 @@ import { RestMealsPage } from '../rest-meals/rest-meals'
   templateUrl: 'user-home.html',
 })
 export class UserHomePage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  resList;
+  
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public db: AngularFireDatabase) {
   }
-
-  goToMealsPage () {
-  	this.navCtrl.push(RestMealsPage)
+  ionViewWillEnter () {
+    this.db.list('/restaurants').valueChanges().subscribe(res => {
+      this.resList = res;
+      // console.log(this.resList)
+    });
+  }
+  getKeysNum (obj) {
+    return Object.keys(obj).length;
+  }
+  goToMealsPage (rest) {
+    this.navCtrl.push(RestMealsPage, {resturant: rest});
   }
   
 }
