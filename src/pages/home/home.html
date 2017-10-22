@@ -7,11 +7,16 @@
 </ion-header>
 
 <ion-content padding>
-  <img src="http://www.kavach.mobi/images/Restaurants.jpg"/>
+  <h1 class="title">{{restInfo.name}}</h1>
+  <h3 class="title">{{restInfo.phone}}</h3>
+  <img src={{restInfo.image}}/>
 <ion-list>
   
   <button ion-button (click)= "mealPage()">Meals </button>
   <button ion-button (click)= "reqPage()">Request </button>
   
 </ion-list>
+
+<button ion-button (click)="googleLogout()">Log Out </button>
+
 </ion-content>
