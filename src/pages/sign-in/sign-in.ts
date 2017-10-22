@@ -1,7 +1,8 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
+
 /**
  * Generated class for the SignInPage page.
  *
@@ -15,11 +16,20 @@ import firebase from 'firebase';
   templateUrl: 'sign-in.html',
 })
 export class SignInPage {
-  
+name ;
+email ;
+password ;
+
   fbLoggedIn: boolean = false;
   googleLogedin: boolean = false;
   fbData;
   googledata;
+  obj={
+    username: this.name,
+    email: this.email,
+    password: this.password
+  }
+  
   fbAuth = new firebase.auth.FacebookAuthProvider();
   googlprovider = new firebase.auth.GoogleAuthProvider();
   constructor(
@@ -37,6 +47,7 @@ export class SignInPage {
     this.angularFireAuth.auth.signInWithPopup(this.fbAuth).then(res => {
       this.fbLoggedIn = true;
       this.fbData = res;
+      console.log(res)
       this.changeDetector.detectChanges();
     }).catch(err => {
       console.log('error =======> ' + err);
@@ -49,7 +60,7 @@ export class SignInPage {
     this.changeDetector.detectChanges();
   }
 
-  googleLogin(){
+  googleLogin() {
     this.angularFireAuth.auth.signInWithPopup(this.googlprovider).then(res=>{
     this.googleLogedin=true;
     this.googledata=res;
@@ -59,10 +70,14 @@ export class SignInPage {
     })
   }
 
-  googleLogout(){
+  googleLogout() {
     this.angularFireAuth.auth.signOut()
     this.googleLogedin = false;
     console.log('logout from google');
     this.changeDetector.detectChanges();
   }  
+  emaillogin() {
+    console.log(this.name,this.email,this.password);
+  }
 }
+

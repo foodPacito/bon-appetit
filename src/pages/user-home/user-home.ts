@@ -28,6 +28,11 @@ export class UserHomePage {
       // console.log(this.resList)
     });
   }
+
+  navToMap() {
+    this.navCtrl.push(RestMealsPage);
+  }
+
   getKeysNum (obj) {
     return Object.keys(obj).length;
   }
