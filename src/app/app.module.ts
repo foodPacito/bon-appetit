@@ -12,7 +12,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
-import { RestMealsPage } from '../pages/rest-meals/rest-meals'
+import { RestMealsPage } from '../pages/rest-meals/rest-meals';
 import { RequestsPage } from '../pages/requests/requests';
 import { MealsPage } from '../pages/meals/meals';
 import { OrderPage } from '../pages/order/order';
@@ -20,6 +20,7 @@ import { DelivaryPage } from '../pages/delivary/delivary';
 import { HandPickPage } from '../pages/hand-pick/hand-pick';
 import { UserHomePage } from '../pages/user-home/user-home';
 import { SignInPage } from '../pages/sign-in/sign-in';
+import { MapPage } from '../pages/map/map';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBnH6BJVQHmst0wH2in3G4ftWxG2-m5r34",
@@ -42,7 +43,8 @@ var firebaseConfig = {
     DelivaryPage,
     HandPickPage,
     UserHomePage,
-    SignInPage
+    SignInPage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,8 @@ var firebaseConfig = {
     DelivaryPage,
     HandPickPage,
     UserHomePage,
-    SignInPage
+    SignInPage,
+    MapPage
   ],
   providers: [
     StatusBar,
