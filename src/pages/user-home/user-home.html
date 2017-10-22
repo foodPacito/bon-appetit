@@ -14,25 +14,37 @@
 
 
 <ion-content padding class="card-background-page outer-content">
-    <ion-card>
-      <img src="https://www.scandichotels.com/imagevault/publishedmedia/qn6infvg30381stkubky/scandic-sundsvall-city-restaurant-verket-10.jpg"/>
+  <div *ngIf="resList">
+    <ion-card *ngFor="let rest of resList">
+      <img (click)="goToMealsPage(rest)" src={{rest.pic}}/>
       <ion-fab right top>
         <button ion-fab>
           <ion-icon name="pin"></ion-icon>
         </button>
       </ion-fab>
-      <div class="card-title">Boho House</div>
-      <div class="card-subtitle">3 Items</div>
+      <div (click)="goToMealsPage(rest)" class="card-title">{{rest.name}}</div>
+      <div (click)="goToMealsPage(rest)" class="card-subtitle">{{getKeysNum(rest.available)}} items</div>
     </ion-card>
-    <ion-card>
-      <img src="http://www.stanleyhotel.com/uploads/9/8/6/9/98696462/published/20111115-cascades001v2_3.jpeg"/>
-      <div class="card-title">Fancy Restaurant</div>
-      <div class="card-subtitle">2 Items</div>
-    </ion-card>
-    <ion-card>
-      <img src="https://media-cdn.tripadvisor.com/media/photo-s/0a/7b/7b/c6/restaurant-view.jpg"/>
-      <div class="card-title">Aalya</div>
-      <div class="card-subtitle">2 Items</div>
-    </ion-card>
-  <button ion-button block round (click)='goToMealsPage()'>Go To Meals</button>
+  </div>
+  <!-- <ion-card>
+    <img src="https://www.scandichotels.com/imagevault/publishedmedia/qn6infvg30381stkubky/scandic-sundsvall-city-restaurant-verket-10.jpg"/>
+    <ion-fab right top>
+      <button ion-fab>
+        <ion-icon name="pin"></ion-icon>
+      </button>
+    </ion-fab>
+    <div class="card-title">Boho House</div>
+    <div class="card-subtitle">3 Items</div>
+  </ion-card>
+  <ion-card>
+    <img src="http://www.stanleyhotel.com/uploads/9/8/6/9/98696462/published/20111115-cascades001v2_3.jpeg"/>
+    <div class="card-title">Fancy Restaurant</div>
+    <div class="card-subtitle">2 Items</div>
+  </ion-card>
+  <ion-card>
+    <img src="https://media-cdn.tripadvisor.com/media/photo-s/0a/7b/7b/c6/restaurant-view.jpg"/>
+    <div class="card-title">Aalya</div>
+    <div class="card-subtitle">2 Items</div>
+  </ion-card>
+  <button ion-button block round (click)='goToMealsPage()'>Go To Meals</button> -->
 </ion-content>

@@ -14,14 +14,20 @@ import { OrderPage } from '../order/order';
   templateUrl: 'rest-meals.html',
 })
 export class RestMealsPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  restaurant;
+  availList;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RestMealsPage');
+    this.restaurant = this.navParams.get('resturant');
+    this.availList=Object.keys(this.restaurant.available);
+    console.log(this.availList);
   }
-  order(){
+  order() {
+    // console.log(this.restaurant);
   	this.navCtrl.push(OrderPage);
   }
 
