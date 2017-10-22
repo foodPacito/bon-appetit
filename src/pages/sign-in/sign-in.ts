@@ -2,6 +2,9 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
+import { AngularFireDatabase } from 'angularfire2/database'
+import { HomePage } from '../home/home';
+
 /**
  * Generated class for the SignInPage page.
  *
@@ -20,21 +23,34 @@ export class SignInPage {
   googleLogedin: boolean = false;
   fbData;
   googledata;
+  restaurantsList = []; 
   fbAuth = new firebase.auth.FacebookAuthProvider();
   googlprovider = new firebase.auth.GoogleAuthProvider();
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public angularFireAuth: AngularFireAuth,
-    public changeDetector: ChangeDetectorRef) {
+    public changeDetector: ChangeDetectorRef,
+    private db: AngularFireDatabase,) {
   }
 
   ionViewDidLoad() {
+    this.db.list('/restaurants').valueChanges().subscribe( data => {
+    if (this.restaurantsList.length === 0){
+      console.log(data)
+      console.log('=============================')
+      for (var i = 0; i < data.length; i++){
+        this.restaurantsList.push([data[i]['name'],data[i]['email']])
+        console.log(this.restaurantsList)
+      }
+    }
+    })
   }
 
   fbLogin() {
     this.fbAuth.addScope('user_friends');    
     this.angularFireAuth.auth.signInWithPopup(this.fbAuth).then(res => {
+      console.log(res)
       this.fbLoggedIn = true;
       this.fbData = res;
       this.changeDetector.detectChanges();
@@ -50,12 +66,23 @@ export class SignInPage {
   }
 
   googleLogin(){
+    console.log(this.restaurantsList)
     this.angularFireAuth.auth.signInWithPopup(this.googlprovider).then(res=>{
     this.googleLogedin=true;
     this.googledata=res;
     console.log('login from google')
-    console.log(res);
+    console.log(res.user.email);
     this.changeDetector.detectChanges();
+    for (var i = 0; i < this.restaurantsList.length; i++){
+      console.log('hi')
+      if (res.user.email === this.restaurantsList[i][1]){
+        console.log('found it')
+        console.log(this.restaurantsList[i][0])
+        this.navCtrl.setRoot(HomePage, {
+          restName: this.restaurantsList[i][0]
+        })
+      }
+    }
     })
   }
 

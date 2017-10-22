@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 
 
 
+
 /**
  * Generated class for the MealsPage page.
  *
@@ -21,13 +22,19 @@ i;
 show= [];
 meals= [];
 nums = [1,2,3,4,5,6,7,8,9,10];
+restName;
+restInfo;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFireDatabase, public alertCtrl: AlertController) {
-  this.db.list('/restaurants/Cafe Hanin/available').valueChanges().subscribe( data => {
+    this.restName = this.navParams.get('restName')
+    console.log(this.restName)
+    
+    this.db.list('/restaurants/'+ this.restName +'/available').valueChanges().subscribe( data => {
       console.log(data)
       console.log('=============================')
       this.show = data.reverse();
     })
+    
   }
 
   ionViewDidLoad() {
@@ -37,22 +44,21 @@ nums = [1,2,3,4,5,6,7,8,9,10];
   addMeal(name, num){
   console.log(this.show)
   if (this.show.length === 0){
-    this.db.object('/restaurants/Cafe Hanin/available/'+name).set({
+    this.db.object('/restaurants/'+this.restName+'/available/'+name).set({
        name : name,
        quantity: Number(num)
     })
   }else {
      for (var i = 0; i < this.show.length; i++){
        if (this.show[i].name === name){
-         console.log(typeof(this.show[i].quantity), '====================')
          num = Number(num) + this.show[i].quantity
-        this.db.object('/restaurants/Cafe Hanin/available/'+name).set({
+        this.db.object('/restaurants/'+this.restName+'/available/'+name).set({
           name : name,
           quantity: num
        })
        }
      }
-     this.db.object('/restaurants/Cafe Hanin/available/'+name).set({
+     this.db.object('/restaurants/'+this.restName+'/available/'+name).set({
       name : name,
       quantity: Number(num)
    }) 
@@ -74,15 +80,15 @@ removeMeal(name, num){
          console.log(typeof(this.show[i].quantity), '====================')
          num =this.show[i].quantity - Number(num)
          if(num === 0){
-          this.db.object('/restaurants/Cafe Hanin/available/'+name).remove();
+          this.db.object('/restaurants/'+this.restName+'/available/'+name).remove();
           return;
          } else {
-        this.db.object('/restaurants/Cafe Hanin/available/'+name).set({
+        this.db.object('/restaurants/'+this.restName+'/available/'+name).set({
           name : name,
           quantity: num
        })
        return;}
-       } else if ((this.show[i].quantity - Number(num)) < 0){
+       } else if (this.show[i].name === name && (this.show[i].quantity - Number(num)) < 0){
         let alert = this.alertCtrl.create({
           title: 'Error !!',
           subTitle: "You can only remove " + this.show[i].quantity + " meal(s)",
@@ -102,8 +108,9 @@ removeMeal(name, num){
 }
 
 ionViewDidEnter(){
-  this.db.list('/restaurants/Cafe Hanin/menue').valueChanges().subscribe( data => {
+  this.db.list('/restaurants/'+this.restName+'/menue').valueChanges().subscribe( data => {
     console.log(data)
+    console.log("%%%%%%%%%%%%%%%")
     this.meals = data;
   })
 }
