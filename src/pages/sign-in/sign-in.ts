@@ -1,7 +1,8 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
+
 import { AngularFireDatabase } from 'angularfire2/database'
 import { HomePage } from '../home/home';
 
@@ -18,11 +19,20 @@ import { HomePage } from '../home/home';
   templateUrl: 'sign-in.html',
 })
 export class SignInPage {
-  
+name ;
+email ;
+password ;
+
   fbLoggedIn: boolean = false;
   googleLogedin: boolean = false;
   fbData;
   googledata;
+  obj={
+    username: this.name,
+    email: this.email,
+    password: this.password
+  }
+  
   restaurantsList = []; 
   fbAuth = new firebase.auth.FacebookAuthProvider();
   googlprovider = new firebase.auth.GoogleAuthProvider();
@@ -53,6 +63,7 @@ export class SignInPage {
       console.log(res)
       this.fbLoggedIn = true;
       this.fbData = res;
+      console.log(res)
       this.changeDetector.detectChanges();
     }).catch(err => {
       console.log('error =======> ' + err);
@@ -64,6 +75,7 @@ export class SignInPage {
     this.fbLoggedIn = false;
     this.changeDetector.detectChanges();
   }
+
 
   googleLogin(){
     console.log(this.restaurantsList)
@@ -86,10 +98,14 @@ export class SignInPage {
     })
   }
 
-  googleLogout(){
+  googleLogout() {
     this.angularFireAuth.auth.signOut()
     this.googleLogedin = false;
     console.log('logout from google');
     this.changeDetector.detectChanges();
   }  
+  emaillogin() {
+    console.log(this.name,this.email,this.password);
+  }
 }
+
