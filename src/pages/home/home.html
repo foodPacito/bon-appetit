@@ -9,11 +9,16 @@
 <ion-content padding>
   <h1 class="title">{{restInfo.name}}</h1>
   <h3 class="title">{{restInfo.phone}}</h3>
+  You have a <strong>{{avRating}}</strong> rating out of <strong>5</strong>
+  <br/>
+  from <strong>{{raters}}</strong> person(s)
   <img src={{restInfo.image}}/>
 <ion-list>
   
   <button ion-button (click)= "mealPage()">Meals </button>
   <button ion-button (click)= "reqPage()">Request </button>
+  <button ion-button (click)= "revPage()">Reviews </button>
+  
   
 </ion-list>
 

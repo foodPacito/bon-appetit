@@ -108,7 +108,8 @@ removeMeal(name, num){
 }
 
 ionViewDidEnter(){
-  this.db.list('/restaurants/'+this.restName+'/menue').valueChanges().subscribe( data => {
+  console.log(this.restName)
+  this.db.list('/restaurants/'+this.restName+'/menu').valueChanges().subscribe( data => {
     console.log(data)
     console.log("%%%%%%%%%%%%%%%")
     this.meals = data;
