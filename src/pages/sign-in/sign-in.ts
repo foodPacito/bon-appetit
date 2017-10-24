@@ -5,6 +5,7 @@ import firebase from 'firebase';
 
 import { AngularFireDatabase } from 'angularfire2/database'
 import { HomePage } from '../home/home';
+import { MapPage } from '../map/map';
 
 /**
  * Generated class for the SignInPage page.
@@ -44,6 +45,9 @@ password ;
     private db: AngularFireDatabase,) {
   }
 
+     MarkerMap(){
+      this.navCtrl.push(MapPage);
+     }
   ionViewDidLoad() {
     this.db.list('/restaurants').valueChanges().subscribe( data => {
     if (this.restaurantsList.length === 0){
