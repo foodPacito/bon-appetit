@@ -1,4 +1,4 @@
-   import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
     import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
     import { AngularFireAuth } from 'angularfire2/auth'
     import { Geolocation } from '@ionic-native/geolocation';
@@ -74,6 +74,8 @@ let restaurant =[
      
       let infoWindow = new google.maps.InfoWindow({
         content: content
+          // position.coords.latitude,
+          // position.coords.longitude
       });
      
       google.maps.event.addListener(marker, 'click', () => {
@@ -81,6 +83,22 @@ let restaurant =[
       });
      
     }
+
+  getMarkers(){
+    var markers = JSON.parse(localStorage.getItem('markers'));
+    return markers;
+  }
+
+  AddMarker(newMarker){
+    //fetch marker that are already there
+    var markers = JSON.parse(localStorage.getItem('markers'));
+
+    // Push to array
+    markers.push(newMarker);
+
+    //set markers again
+    localStorage.setItem('markers',JSON.stringify(markers))
+  }
  findRestaurant() {
     this.geolocation.getCurrentPosition().then(position => {
       let location = new google.maps.LatLng(
@@ -90,7 +108,9 @@ let restaurant =[
       let result = {};
       let min = 0;
       let userLat = position.coords.latitude;
+      console.log(userLat);
       let userlong = position.coords.longitude;
+      console.log(userlong)
       let distance;
       for(var i=0; i<restaurant.length; i++){
         distance= ((userLat-restaurant[i].lat)**2+(userlong-restaurant[i].lng)**2)**0.5;
@@ -110,11 +130,14 @@ let restaurant =[
           let name = key
         }
       }
- 
+  console.log(name, min);
+    alert("The nearst restaurant:" + " " + name + " " + "It is" + " " + Math.floor(min*10)+ " km" +" "+ "far from you");
     
     })
+
    }
  }
 
 
  ///////////////google.maps.event.addListener(window, 'load', initMap);
+

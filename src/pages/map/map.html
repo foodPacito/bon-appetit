@@ -1,27 +1,35 @@
-<!--
-  Generated template for the MapPage page.
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<!-- <ion-header>
-
-  <ion-navbar color="primary">
-    <ion-title>Google Maps</ion-title>
-  </ion-navbar>
-
+ <ion-header>
+ <ion-navbar>
+ <ion-title>Map</ion-title>
+ </ion-navbar>
 </ion-header>
-
-<ion-content >
-<div #map id="map"></div>
-</ion-content> -->
-<!-- 
-//////////////////////////////////////////////////////////////4
- -->
- <ion-content padding>
-
-    <button ion-button (click)='addMarker()'>Add Marker</button>
-    <button ion-button (click)='findRestaurant()'>FindRestaurant</button>
-
-<div #map id="map"></div>
-
-</ion-content>
+ <ion-content>
+  <!--  <ion-content>
+      <sebm-google-map id="map"  [latitude]="map.lat" [longitude]="map.lng"
+       [zoom]="map.zoom">
+      </sebm-google-map>
+ </ion-content> -->
+  <ion-toolbar >
+        <ion-segment color="dark">
+            <ion-segment-button (click)='findRestaurant()'>
+               Find Restaurant
+            </ion-segment-button>
+            <ion-segment-button   (click)="addMarker()">
+                Add Marker
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+     <div #map id="map"></div>
+<!-- <ion-fab bottom rightsize= 56px>
+  <button ion-fab >List of Restaurant</button>
+  <ion-fab-list side="top">
+    <button ion-fab >Restaurant1</button>
+    <button ion-fab>Restaurant2</button>
+    <button ion-fab>Restaurant3</button>
+  </ion-fab-list>
+</ion-fab>
+ <button ion-item>
+      <ion-icon name="cafe" item-start></ion-icon>
+      Cafe
+    </button> -->
+ </ion-content>
