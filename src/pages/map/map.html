@@ -1,27 +1,23 @@
-<!--
-  Generated template for the MapPage page.
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<!-- <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>Google Maps</ion-title>
-  </ion-navbar>
+ <ion-header>
 
-</ion-header>
+ <ion-navbar>
+ <ion-title>Map</ion-title>
+ </ion-navbar>
 
-<ion-content >
-<div #map id="map"></div>
-</ion-content> -->
-<!-- 
-//////////////////////////////////////////////////////////////4
- -->
- <ion-content padding>
+ </ion-header>
 
-    <button ion-button (click)='addMarker()'>Add Marker</button>
-    <button ion-button (click)='findRestaurant()'>FindRestaurant</button>
 
-<div #map id="map"></div>
+  <!--  <ion-content>
+      <sebm-google-map id="map"  [latitude]="map.lat" [longitude]="map.lng"
+       [zoom]="map.zoom">
+      </sebm-google-map>
+ </ion-content> -->
 
-</ion-content>
+  <ion-content padding>
+
+    <button ion-button block round (click)='addMarker()'>Add Marker</button>
+    <button ion-button block round (click)='findRestaurant()'>FindRestaurant</button>
+       <div #map id="map"></div> 
+  
+ </ion-content>

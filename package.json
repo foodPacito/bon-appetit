@@ -17,9 +17,8 @@
     "e2e-test": "protractor ./test-config/protractor.conf.js",
     "e2e-update": "webdriver-manager update --standalone false --gecko false"
   },
-    
-
   "dependencies": {
+    "@agm/core": "^1.0.0-beta.1",
     "@angular/common": "4.4.3",
     "@angular/compiler": "4.4.3",
     "@angular/compiler-cli": "4.4.3",
@@ -39,22 +38,19 @@
     "angularfire2": "^5.0.0-rc.3",
     "cordova-android": "6.3.0",
     "cordova-ios": "~4.5.2",
+    "cordova-plugin-add-swift-support": "^1.6.0",
+    "cordova-plugin-compat": "^1.0.0",
+    "cordova-plugin-console": "^1.0.5",
     "cordova-plugin-device": "^1.1.4",
+    "cordova-plugin-geofence": "^0.7.0",
+    "cordova-plugin-geolocation": "^2.4.3",
+    "cordova-plugin-googlemaps": "^1.4.0",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-splashscreen": "^4.0.3",
+    "cordova-plugin-statusbar": "^2.2.2",
     "cordova-plugin-whitelist": "^1.3.1",
+    "es6-promise-plugin": "^4.1.0",
     "firebase": "^4.5.2",
-     "cordova-plugin-add-swift-support": "^1.6.0",
-        "cordova-plugin-compat": "^1.0.0",
-        "cordova-plugin-console": "^1.0.5",
-        "cordova-plugin-device": "^1.1.4",
-        "cordova-plugin-geofence": "^0.7.0",
-        "cordova-plugin-geolocation": "^2.4.3",
-        "cordova-plugin-googlemaps": "^1.4.0",
-        "cordova-plugin-splashscreen": "^4.0.3",
-        "cordova-plugin-statusbar": "^2.2.2",
-        "cordova-plugin-whitelist": "^1.3.1",
-        "es6-promise-plugin": "^4.1.0",
     "ionic-angular": "3.7.1",
     "ionic-native": "^2.9.0",
     "ionic-plugin-keyboard": "^2.2.1",
@@ -65,7 +61,7 @@
     "zone.js": "0.8.18"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.0.0",
+    "@ionic/app-scripts": "1.3.7",
     "@types/jasmine": "^2.6.0",
     "@types/node": "^8.0.44",
     "angular2-template-loader": "^0.6.2",
@@ -85,32 +81,27 @@
     "protractor": "^5.2.0",
     "ts-loader": "^3.0.2",
     "ts-node": "^3.3.0",
-    "typescript": "2.3.4",
-     "@ionic/app-scripts": "1.3.7",
-        "@ionic/cli-plugin-cordova": "1.4.0",
-        "@ionic/cli-plugin-ionic-angular": "1.3.1",
-        "typescript": "2.3.3"
+    "typescript": "2.3.3",
+    "@ionic/cli-plugin-cordova": "1.4.0",
+    "@ionic/cli-plugin-ionic-angular": "1.3.1"
   },
-     "description": "An Ionic project",
-    "cordova": {
-        "plugins": {
-            "cordova-plugin-googlemaps": {
-                "API_KEY_FOR_ANDROID": "AIzaSyAadmSrehV1tfJDiZa8jgdDRyohXBGUPy4"
-            },
-            "cordova-plugin-geofence": {},
-            "cordova-plugin-console": {},
-            "cordova-plugin-device": {},
-            "cordova-plugin-splashscreen": {},
-            "cordova-plugin-statusbar": {},
-            "cordova-plugin-whitelist": {},
-            "ionic-plugin-keyboard": {},
-            "cordova-plugin-geolocation": {}
-        },
-        "platforms": [
-            "android"
-        ]
-
+  "description": "An Ionic project",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-googlemaps": {
+        "API_KEY_FOR_ANDROID": "AIzaSyAadmSrehV1tfJDiZa8jgdDRyohXBGUPy4"
+      },
+      "cordova-plugin-geofence": {},
+      "cordova-plugin-console": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-whitelist": {},
+      "ionic-plugin-keyboard": {},
+      "cordova-plugin-geolocation": {}
+    },
+    "platforms": [
+      "android"
+    ]
   }
 }
-
-  
