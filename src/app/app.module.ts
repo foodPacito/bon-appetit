@@ -20,7 +20,7 @@ import { DelivaryPage } from '../pages/delivary/delivary';
 import { HandPickPage } from '../pages/hand-pick/hand-pick';
 import { UserHomePage } from '../pages/user-home/user-home';
 import { SignInPage } from '../pages/sign-in/sign-in';
-import { MapPage } from '../pages/map/map';
+//import { MapPage } from '../pages/map/map';
 import { RestReviewsPage } from '../pages/rest-reviews/rest-reviews';
 
 var firebaseConfig = {
@@ -45,7 +45,7 @@ var firebaseConfig = {
     HandPickPage,
     UserHomePage,
     SignInPage,
-    MapPage,
+    //MapPage,
     RestReviewsPage
   ],
   imports: [
@@ -69,7 +69,7 @@ var firebaseConfig = {
     HandPickPage,
     UserHomePage,
     SignInPage,
-    MapPage,
+    //MapPage,
     RestReviewsPage
   ],
   providers: [
