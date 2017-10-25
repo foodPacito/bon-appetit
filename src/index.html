@@ -6,6 +6,7 @@
   <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
   <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
   <link rel="manifest" href="manifest.json">
@@ -15,10 +16,19 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-<script src="https://maps.googleapis.com/maps/api/js? key=AIzaSyAadmSrehV1tfJDiZa8jgdDRyohXBGUPy4" async defer></script>
   <!-- cordova.js required for cordova apps -->
-  <script src="cordova.js"></script>
+ <!--  <script src="https://maps.googleapis.com/maps/api/js? key=AIzaSyAadmSrehV1tfJDiZa8jgdDRyohXBGUPy4" async defer></script> -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js? key=AIzaSyAadmSrehV1tfJDiZa8jgdDRyohXBGUPy4&sensor=false &callback=initMap"></script>
 
+
+  <ion-app></ion-app>
+  <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAadmSrehV1tfJDiZa8jgdDRyohXBGUPy4
+  &callback=initMap()&sensor=true" type="text/javascript"></script> -->
+    <!-- cordova.js required for cordova apps -->
+  <script src="cordova.js"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAadmSrehV1tfJDiZa8jgdDRyohXBGUPy4&sensor=false" type="text/javascript"></script>
+  <script src="cordova.js"></script> -->
+ 
   <!-- un-comment this code to enable service worker
   <script>
     if ('serviceWorker' in navigator) {
@@ -33,8 +43,9 @@
 </head>
 <body>
 
+
   <!-- Ionic's root component and where the app will load -->
-  <ion-app></ion-app>
+
 
   <!-- The polyfills js is generated during the build process -->
   <script src="build/polyfills.js"></script>

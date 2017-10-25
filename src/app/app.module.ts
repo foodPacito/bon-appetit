@@ -1,16 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule , } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 
+import { GoogleMaps } from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+/////import { IonicNativeModule } from 'ionic-native';
 
 import { RestMealsPage } from '../pages/rest-meals/rest-meals';
 import { RequestsPage } from '../pages/requests/requests';
@@ -76,6 +79,9 @@ var firebaseConfig = {
     StatusBar,
     SplashScreen,
     AngularFireDatabase,
+    GoogleMaps,
+    Geolocation,
+
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
