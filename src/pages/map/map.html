@@ -5,19 +5,40 @@
  <ion-title>Map</ion-title>
  </ion-navbar>
 
- </ion-header>
 
-
+</ion-header>
+ <ion-content>
   <!--  <ion-content>
       <sebm-google-map id="map"  [latitude]="map.lat" [longitude]="map.lng"
        [zoom]="map.zoom">
       </sebm-google-map>
  </ion-content> -->
+  <ion-toolbar >
+        <ion-segment color="dark">
+            <ion-segment-button (click)='findRestaurant()'>
+               FindRestaurant
+            </ion-segment-button>
+            <ion-segment-button   (click)="addMarker()">
+                Add Marker
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+     <div #map id="map"></div>
+ <!--   <ion-content padding> 
 
-  <ion-content padding>
-
-    <button ion-button block round (click)='addMarker()'>Add Marker</button>
-    <button ion-button block round (click)='findRestaurant()'>FindRestaurant</button>
-       <div #map id="map"></div> 
-  
+  <ion-fab>
+  <button ion-fab color="primary">list of Restaurant</button>
+</ion-fab> -->
+<ion-fab bottom right >
+  <button ion-fab size= 56px>List of Restaurant</button>
+  <ion-fab-list side="top">
+    <button ion-fab >Restaurant1</button>
+    <button ion-fab>Restaurant2</button>
+    <button ion-fab>Restaurant3</button>
+  </ion-fab-list>
+</ion-fab>
+ <button ion-item>
+      <ion-icon name="cafe" item-start></ion-icon>
+      Cafe
+    </button>
  </ion-content>
