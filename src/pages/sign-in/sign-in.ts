@@ -1,10 +1,12 @@
 import { Component, ChangeDetectorRef, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
 
-import { AngularFireDatabase } from 'angularfire2/database'
+import { AngularFireDatabase } from 'angularfire2/database';
 import { HomePage } from '../home/home';
+import { UserHomePage } from '../user-home/user-home';
+import {Md5} from 'ts-md5/dist/md5';
 import { MapPage } from '../map/map';
 
 /**
@@ -18,14 +20,16 @@ import { MapPage } from '../map/map';
 @Component({
   selector: 'page-sign-in',
   templateUrl: 'sign-in.html',
+  
 })
 export class SignInPage {
-name ;
-email ;
-password ;
-
+  name ;
+  email ;
+  password ;
+  itemsRef;
   fbLoggedIn: boolean = false;
   googleLogedin: boolean = false;
+  loggedin: boolean = false;
   fbData;
   googledata;
   obj={
@@ -37,12 +41,15 @@ password ;
   restaurantsList = []; 
   fbAuth = new firebase.auth.FacebookAuthProvider();
   googlprovider = new firebase.auth.GoogleAuthProvider();
+  EmailAuth=new firebase.auth.EmailAuthProvider();
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    
     public angularFireAuth: AngularFireAuth,
     public changeDetector: ChangeDetectorRef,
-    private db: AngularFireDatabase,) {
+    private db: AngularFireDatabase,
+    private toast: ToastController) {
   }
 
      MarkerMap(){
@@ -59,6 +66,7 @@ password ;
       }
     }
     })
+  
   }
 
   fbLogin() {
@@ -107,9 +115,43 @@ password ;
     this.googleLogedin = false;
     console.log('logout from google');
     this.changeDetector.detectChanges();
-  }  
-  emaillogin() {
-    console.log(this.name,this.email,this.password);
   }
-}
 
+  emailSignUp() {
+    this.password=Md5.hashStr(this.password);
+    this.angularFireAuth.auth.createUserWithEmailAndPassword(this.email,this.password).then(signUpData=>{
+      this.itemsRef = this.db.list('Users');
+      this.itemsRef.push(
+        { firstName: this.name,
+          email: this.email,
+          password: this.password
+        })
+      this.navCtrl.push(UserHomePage)
+    }).catch(err => {
+      this.toast.create({
+          message: err.message,
+          duration: 6000
+      }).present();
+      });
+  }
+  emailSignIn(){
+    this.password=Md5.hashStr(this.password);
+    this.angularFireAuth.auth.signInWithEmailAndPassword(this.email,this.password).then(signedInData => {
+      this.loggedin = true;    
+      this.navCtrl.push(UserHomePage);
+    }).catch(err => {
+      console.log(err);
+      this.toast.create({
+        message: err.message,
+        duration: 6000
+      }).present(); 
+    });
+    
+  }
+
+    emailSignOut(){
+      this.angularFireAuth.auth.signOut()
+      this.loggedin = false;
+      this.changeDetector.detectChanges()
+    }
+}

@@ -7,7 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { SignInPage } from '../pages/sign-in/sign-in';
 
-import { MapPage } from '../pages/map/map';
+//import { MapPage } from '../pages/map/map';
 import { UserHomePage } from '../pages/user-home/user-home';
 @Component({
   templateUrl: 'app.html'
