@@ -21,7 +21,7 @@
 
           <ion-item>
             <ion-label stacked>Email</ion-label>
-            <ion-input [(ngModel)]="email" type="text" ></ion-input>
+            <ion-input [(ngModel)]="email" type="text"  ></ion-input>
           </ion-item>
         
           <ion-item>
@@ -29,12 +29,17 @@
             <ion-input [(ngModel)]="password" type="password" ></ion-input>
           </ion-item>
         
-        </ion-list>   
-        <button ion-button block round (click)='emaillogin()'>Log In</button>
+        </ion-list>                        
+
+        <button ion-button block round (click)='emailSignUp()'>Sign Up</button>
+
+        <button ion-button block round *ngIf=!loggedin (click)='emailSignIn()'>Sign In</button>
+        <button ion-button block round *ngIf=loggedin (click)='emailSignOut()'>Sign Out</button>
 
   <button ion-button block round *ngIf=!fbLoggedIn (click)='fbLogin()'>Facebook Log In</button>
   <button ion-button block round *ngIf=fbLoggedIn (click)='fbLogout()'>Log Out</button>
   <button ion-button block round *ngIf=!googleLogedin (click)='googleLogin()' >google Login</button>
   <button ion-button block round *ngIf=googleLogedin (click)='googleLogout()' >google Logout</button>
+  <button ion-button  block round (click)="MarkerMap()">Add Mark</button>
 </ion-content>
 <!-- https://fireapp-14c15.firebaseapp.com/__/auth/handler -->
