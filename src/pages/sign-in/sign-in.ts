@@ -7,7 +7,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { HomePage } from '../home/home';
 import { UserHomePage } from '../user-home/user-home';
 import {Md5} from 'ts-md5/dist/md5';
-
+import { MapPage } from '../map/map';
 
 /**
  * Generated class for the SignInPage page.
@@ -52,6 +52,9 @@ export class SignInPage {
     private toast: ToastController) {
   }
 
+     MarkerMap(){
+      this.navCtrl.push(MapPage);
+     }
   ionViewDidLoad() {
     this.db.list('/restaurants').valueChanges().subscribe( data => {
     if (this.restaurantsList.length === 0){

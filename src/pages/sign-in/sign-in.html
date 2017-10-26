@@ -40,5 +40,6 @@
   <button ion-button block round *ngIf=fbLoggedIn (click)='fbLogout()'>Log Out</button>
   <button ion-button block round *ngIf=!googleLogedin (click)='googleLogin()' >google Login</button>
   <button ion-button block round *ngIf=googleLogedin (click)='googleLogout()' >google Logout</button>
+  <button ion-button  block round (click)="MarkerMap()">Add Mark</button>
 </ion-content>
 <!-- https://fireapp-14c15.firebaseapp.com/__/auth/handler -->

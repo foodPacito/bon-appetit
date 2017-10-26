@@ -1,98 +1,120 @@
-import { Component,ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+   import { Component, ElementRef, ViewChild } from '@angular/core';
+    import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+    import { AngularFireAuth } from 'angularfire2/auth'
+    import { Geolocation } from '@ionic-native/geolocation';
 
-/**
- * Generated class for the MapPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-declare var google :any;
+   declare var google :any;
 
-@IonicPage()
-@Component({
-  selector: 'page-map',
-  templateUrl: 'map.html',
+let restaurant =[
+     {name: 'Amman', lat:31.95638607801807 , lng:35.94535052776337 }
+   ]
+
+    let position;
+
+  @IonicPage()
+    @Component({
+     selector: 'page-map',
+     templateUrl: 'map.html',
 })
-export class MapPage {
-	@ViewChild('map') mapRef: ElementRef;
+
+      export class MapPage {
+       @ViewChild('map') mapElement:ElementRef;
+       map: any; 
+
+  constructor( 
+   public navCtrl: NavController,
+    public navParams: NavParams,
+     public geolocation: Geolocation) {
+
+ }  initMap(){
+       
+   this.geolocation.getCurrentPosition().then((position) => {
+ 
+     let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+ 
+       let mapOptions = {
+         center: location,
+         zoom: 20,
+         mapTypeId: google.maps.MapTypeId.ROADMAP
+        
+       }
+ 
+       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+ 
+     });
+ 
+   }
+
+    ionViewDidLoad() {
+        this.initMap();
+        //     ///console.log(this.mapRef);
+        //     this.showMap();
+        //   }
+       console.log('your page ionViewDidLoad');
+ }
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
 
-  ionViewDidLoad() {
-    ///console.log(this.mapRef);
-    this.showMap();
-  }
-showMap() {
-	//location
-
- //const location = new google.maps.LatLng(31.95638607801807, 35.94535052776337);	
- 	//map options
- const options = {
- 	center: location,
- 	zoom : 15,
- 	streetViewControl : false,
- 	mapTypeId :'terrain'///'hybrid' ////'satellite' ///'roadmap'
- };
- const map = new google.maps.Map(this.mapRef.nativeElement, options);
- 	setTimeout(() => map.setMapTypeId('satellite'),3000);
-
- this.addMarker(location, map);
-var marker= new google.maps.Marker({
-  position :location,
-  title : "Roro"
-});
-marker.setMap(map);
-}
-addMarker(position, map) {
-	return new google.maps.Marker({
-		position,
-		map
-	});
-}
-} 
- // MapPage(){
- //    this.navCtrl.push(MapPage);
- //  }
- // In the following example, markers appear when the user clicks on the map.
-// Each marker is labeled with a single alphabetical character.
-var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var labelIndex = 0;
-
-function initialize() {
-  var lat= 31.95638607801807;
-  var lng= 35.94535052776337;
-  var location = { lat:lat, lng:lng};
+     addMarker(){
      
+      let marker = new google.maps.Marker({
+        map: this.map,
+        animation: google.maps.Animation.DROP,
+        position: this.map.getCenter()
+      });
 
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 20,
-    center: location,
-    streetViewControl : false,
-    mapTypeId :'terrain'
-  });
 
-  // This event listener calls addMarker() when the map is clicked.
-  google.maps.event.addListener(map, 'click', function(event) {
-    addMarker(event.latLng, map);
-  });
+        let content = "<h4>Information..</h4>";        
+     
+      this.addInfoWindow(marker, content);
+     
+    }
+   
+    addInfoWindow(marker, content){
+     
+      let infoWindow = new google.maps.InfoWindow({
+        content: content
+      });
+     
+      google.maps.event.addListener(marker, 'click', () => {
+        infoWindow.open(this.map, marker);
+      });
+     
+    }
+ findRestaurant() {
+    this.geolocation.getCurrentPosition().then(position => {
+      let location = new google.maps.LatLng(
+        position.coords.latitude,
+        position.coords.longitude
+      );
+      let result = {};
+      let min = 0;
+      let userLat = position.coords.latitude;
+      let userlong = position.coords.longitude;
+      let distance;
+      for(var i=0; i<restaurant.length; i++){
+        distance= ((userLat-restaurant[i].lat)**2+(userlong-restaurant[i].lng)**2)**0.5;
+        result[restaurant[i].name]=distance;
+      }
+      let arrayKeys = Object.keys(result)
+      let firstKey = arrayKeys[0]
+      min = result[firstKey] 
+          
+      for(var key in result){
+        if(result[key]<min){
+          min = result[key];
+        }
+      }
+      for(var key in result){
+        if(result[key]===min){
+          let name = key
+        }
+      }
+ 
+    
+    })
+   }
+ }
 
-  // Add a marker at the center of the map.
-        addMarker(location, map);
-}
 
-// Adds a marker to the map.
-function addMarker(location, map) {
-  // Add the marker at the clicked location, and add the next-available label
-  // from the array of alphabetical characters.
-  var marker = new google.maps.Marker({
-    position: location,
-    label: labels[labelIndex++ % labels.length],
-    map: map
-  });
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
+ ///////////////google.maps.event.addListener(window, 'load', initMap);
