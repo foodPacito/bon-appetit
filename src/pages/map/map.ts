@@ -2,13 +2,15 @@
     import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
     import { AngularFireAuth } from 'angularfire2/auth'
     import { Geolocation } from '@ionic-native/geolocation';
+    import { AngularFireDatabase } from 'angularfire2/database'
+
 
    declare var google :any;
 
-let restaurant =[
-     {name: 'Amman', lat:31.95638607801807 , lng:35.94535052776337 }
-   ]
-
+// let restaurant =[
+//      {name: 'Amman', lat:31.95638607801807 , lng:35.94535052776337 }
+//    ]
+   
     let position;
 
   @IonicPage()
@@ -19,18 +21,42 @@ let restaurant =[
 
       export class MapPage {
        @ViewChild('map') mapElement:ElementRef;
-       map: any; 
+       map: any;
+       restaurant 
+       restName;
+       locationss
+      //  location;
+      //  latitude;
+      //  longitude;
 
   constructor( 
    public navCtrl: NavController,
     public navParams: NavParams,
-     public geolocation: Geolocation) {
+     public geolocation: Geolocation,
+     private db: AngularFireDatabase) { 
+      // this.restName = this.navParams.get('restName')
+      // this.latitude=this.navParams.get('location.latitude')
+      // this.longitude=this.navParams.get('location.longitude')
+      // console.log(this.restName)
+      // console.log(this.latitude)
+      // console.log(this.latitude)
+      
+
+      // this.db.list('/restaurants/'+ this.restName +'/available').valueChanges().subscribe( data => {
+      //   // console.log(data)
+      //   // console.log('=============================')
+        
+      // })
 
  }  initMap(){
-       
+  this.restaurant = this.navParams.get('resturant');
+  this.locationss=(this.restaurant.location.latitude);
+  console.log(this.restaurant);
+  console.log(this.locationss);
+  
    this.geolocation.getCurrentPosition().then((position) => {
  
-     let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+     let location = new google.maps.LatLng(this.restaurant.location.latitude, this.restaurant.location.longitude);
  
        let mapOptions = {
          center: location,
@@ -46,7 +72,7 @@ let restaurant =[
    }
 
     ionViewDidLoad() {
-        this.initMap();
+       this.initMap();
         //     ///console.log(this.mapRef);
         //     this.showMap();
         //   }
@@ -81,39 +107,7 @@ let restaurant =[
       });
      
     }
- findRestaurant() {
-    this.geolocation.getCurrentPosition().then(position => {
-      let location = new google.maps.LatLng(
-        position.coords.latitude,
-        position.coords.longitude
-      );
-      let result = {};
-      let min = 0;
-      let userLat = position.coords.latitude;
-      let userlong = position.coords.longitude;
-      let distance;
-      for(var i=0; i<restaurant.length; i++){
-        distance= ((userLat-restaurant[i].lat)**2+(userlong-restaurant[i].lng)**2)**0.5;
-        result[restaurant[i].name]=distance;
-      }
-      let arrayKeys = Object.keys(result)
-      let firstKey = arrayKeys[0]
-      min = result[firstKey] 
-          
-      for(var key in result){
-        if(result[key]<min){
-          min = result[key];
-        }
-      }
-      for(var key in result){
-        if(result[key]===min){
-          let name = key
-        }
-      }
- 
-    
-    })
-   }
+
  }
 
 

@@ -24,6 +24,7 @@ export class RestMealsPage {
   ionViewDidLoad() {
     this.restaurant = this.navParams.get('resturant');
     this.availList=Object.keys(this.restaurant.available);
+     console.log(this.restaurant)
     console.log(this.availList);
   }
   order() {
