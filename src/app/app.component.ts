@@ -1,3 +1,4 @@
+import { SignUpPage } from './../pages/sign-up/sign-up';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -15,7 +16,7 @@ import { UserHomePage } from '../pages/user-home/user-home';
 export class MyApp {
 
 
-  rootPage:any = SignInPage;
+  rootPage:any = SignUpPage;
 
   constructor(
     platform: Platform,

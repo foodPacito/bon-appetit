@@ -1,3 +1,4 @@
+import { SignUpPage } from './../pages/sign-up/sign-up';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule , } from 'ionic-angular';
@@ -23,8 +24,10 @@ import { DelivaryPage } from '../pages/delivary/delivary';
 import { HandPickPage } from '../pages/hand-pick/hand-pick';
 import { UserHomePage } from '../pages/user-home/user-home';
 import { SignInPage } from '../pages/sign-in/sign-in';
-//import { MapPage } from '../pages/map/map';
+import { MapPage } from '../pages/map/map';
 import { RestReviewsPage } from '../pages/rest-reviews/rest-reviews';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+
 
 var firebaseConfig = {
   apiKey: "AIzaSyBnH6BJVQHmst0wH2in3G4ftWxG2-m5r34",
@@ -48,8 +51,9 @@ var firebaseConfig = {
     HandPickPage,
     UserHomePage,
     SignInPage,
-    //MapPage,
-    RestReviewsPage
+    MapPage,
+    RestReviewsPage,
+    SignUpPage
   ],
   imports: [
     BrowserModule,
@@ -72,8 +76,9 @@ var firebaseConfig = {
     HandPickPage,
     UserHomePage,
     SignInPage,
-    //MapPage,
-    RestReviewsPage
+    MapPage,
+    RestReviewsPage,
+    SignUpPage
   ],
   providers: [
     StatusBar,
@@ -82,7 +87,9 @@ var firebaseConfig = {
     GoogleMaps,
     Geolocation,
 
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Facebook
+
   ]
 })
 export class AppModule {}
