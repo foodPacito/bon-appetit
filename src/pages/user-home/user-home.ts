@@ -1,3 +1,4 @@
+import { MapPage } from './../map/map';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestMealsPage } from '../rest-meals/rest-meals'
@@ -25,7 +26,7 @@ export class UserHomePage {
   ionViewWillEnter () {
     this.db.list('/restaurants').valueChanges().subscribe(res => {
       this.resList = res;
-      // console.log(this.resList)
+      console.log(this.resList)
     });
   }
 
@@ -38,6 +39,9 @@ export class UserHomePage {
   }
   goToMealsPage (rest) {
     this.navCtrl.push(RestMealsPage, {resturant: rest});
+  }
+  goToMapPage(rest){
+    this.navCtrl.push(MapPage,{resturant: rest});
   }
   
 }

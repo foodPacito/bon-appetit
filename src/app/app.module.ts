@@ -79,6 +79,7 @@ var firebaseConfig = {
     MapPage,
     RestReviewsPage,
     SignUpPage
+
   ],
   providers: [
     StatusBar,

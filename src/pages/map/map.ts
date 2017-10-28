@@ -20,6 +20,8 @@
 
 //     let position;
 
+    import { AngularFireDatabase } from 'angularfire2/database'
+
   @IonicPage()
     @Component({
      selector: 'page-map',
@@ -27,68 +29,22 @@
 })
 
       export class MapPage {
-      //  @ViewChild('map') mapElement:ElementRef;
-      //  map: any; 
       
       map: GoogleMap;
       mapElement: HTMLElement;
+       @ViewChild('map') mapElement:ElementRef;
+       map: any;
+       restaurant 
+       restName;
+       locationss
+      //  location;
+      //  latitude;
+      //  longitude;
+
   constructor( 
    public navCtrl: NavController,
     public navParams: NavParams,
      public geolocation: Geolocation,
-     private googleMaps: GoogleMaps) {
-
-  }  
-
-  ionViewDidLoad() {
-    this.loadMap();
-   }
-
-   loadMap() {
-    this.mapElement = document.getElementById('map');
-
-    let mapOptions: GoogleMapOptions = {
-      camera: {
-        target: {
-          lat: 43.0741904,
-          lng: -89.3809802
-        },
-        zoom: 18,
-        tilt: 30
-      }
-    };
-
-    this.map = this.googleMaps.create(this.mapElement, mapOptions);
-
-    this.map.one(GoogleMapsEvent.MAP_READY)
-    .then(() => {
-      console.log('Map is ready!');
-
-      // Now you can use all methods safely.
-      this.map.addMarker({
-          title: 'Ionic',
-          icon: 'blue',
-          animation: 'DROP',
-          position: {
-            lat: 43.0741904,
-            lng: -89.3809802
-          }
-        })
-        .then(marker => {
-          marker.on(GoogleMapsEvent.MARKER_CLICK)
-            .subscribe(() => {
-              alert('clicked');
-            });
-        });
-
-    });
-}
-
-  // initMap(){
-       
-//    this.geolocation.getCurrentPosition().then((position) => {
- 
-//      let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
  
 //        let mapOptions = {
 //          center: location,
@@ -102,7 +58,6 @@
 //      });
  
 //    }
-
 //     ionViewDidLoad() {
 //         this.initMap();
 //         //     ///console.log(this.mapRef);
@@ -172,6 +127,7 @@
     
 //     })
 //    }
+
  }
 
 
