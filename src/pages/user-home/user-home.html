@@ -11,15 +11,13 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding class="card-background-page outer-content">
   <div *ngIf="resList">
     <ion-card *ngFor="let rest of resList">
       <img (click)="goToMealsPage(rest)" src={{rest.pic}}/>
       <ion-fab right top >
-        <button ion-fab>
-          <ion-icon name="pin"></ion-icon>
+        <button ion-fab  (click)="goToMapPage(rest)">
+          <ion-icon name="pin"> </ion-icon>
         </button>
       </ion-fab>
       <div (click)="goToMealsPage(rest)" class="card-title">{{rest.name}}</div>
