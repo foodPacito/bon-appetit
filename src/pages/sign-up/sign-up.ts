@@ -81,14 +81,23 @@ export class SignUpPage {
         this.password=Md5.hashStr(this.password);
         // console.log(this.password)
         this.angularFireAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(signUpData=>{
-          this.itemsRef = this.db.list('Users');
-          this.itemsRef.push(
+          this.itemsRef = this.db.object('Users/' + this.email);
+          this.itemsRef.set(  
             { firstName: this.name,
               email: this.email,
               password: this.password,
               phone: this.phone
             })
-          this.navCtrl.push(UserHomePage)
+            
+              let toast = this.toast.create({
+                message: 'You\'ve signedUp successfully',
+                duration: 2000,
+                position: 'top'
+              });
+              toast.present();
+            
+          
+          this.navCtrl.setRoot(SignInPage)
         }).catch(err => {
           this.toast.create({
               message: err.message,

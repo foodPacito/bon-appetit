@@ -16,6 +16,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class UserHomePage {
   resList;
+  usersList = [];
+  email;
+  user;
   
   constructor(
     public navCtrl: NavController,
@@ -27,6 +30,28 @@ export class UserHomePage {
       this.resList = res;
       // console.log(this.resList)
     });
+
+    this.db.list('/Users').valueChanges().subscribe( data => {
+      if (this.usersList.length === 0){
+        console.log(data)
+        console.log('=============================')
+        for (var i = 0; i < data.length; i++){
+          this.usersList.push([data[i]['firstName'],data[i]['email'],data[i]['phone']])
+        }
+        console.log(this.usersList)
+      }
+
+
+    this.email = this.navParams.get('email')
+
+    for(var i = 0; i < this.usersList.length; i++){      
+      if (this.email === this.usersList[i][1]){
+        this.user = this.usersList[i]
+        console.log("found", this.user)
+      }
+    }
+    })
+    
   }
 
   navToMap() {

@@ -22,6 +22,7 @@ export class SignInPage {
   password ;
   restName;
   restaurantsList = []; 
+  usersList = [];
   EmailAuth=new firebase.auth.EmailAuthProvider();
   
   constructor(
@@ -86,7 +87,10 @@ export class SignInPage {
     this.password=Md5.hashStr(this.password);
     // console.log(this.password)
     this.angularFireAuth.auth.signInWithEmailAndPassword(this.email,this.password).then(signedInData => {
-      this.navCtrl.push(UserHomePage);
+      console.log(signedInData)
+      this.navCtrl.setRoot(UserHomePage, {
+        email: this.email
+      });
     }).catch(err => {
       console.log(err);
       this.toast.create({
