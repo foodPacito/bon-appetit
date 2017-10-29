@@ -12,6 +12,13 @@
 
 </ion-header>
 <ion-content padding class="card-background-page outer-content">
+
+  <div *ngIf="user">
+  <h1>UserName: {{user[0]}}</h1>
+  <h3>UserPhone: {{user[2]}}</h3>
+</div>
+
+  <br>
   <div *ngIf="resList">
     <ion-card *ngFor="let rest of resList">
       <img (click)="goToMealsPage(rest)" src={{rest.pic}}/>

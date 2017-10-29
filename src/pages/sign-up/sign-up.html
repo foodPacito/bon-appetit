@@ -1,0 +1,48 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>signUp</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    
+    <ion-item>
+      <ion-label stacked>Username</ion-label>
+      <ion-input [(ngModel)]="name" type="text" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input [(ngModel)]="email" type="email"  ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Phone Number</ion-label>
+      <ion-input [(ngModel)]="phone" type="number"  ></ion-input>
+    </ion-item>
+      
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input [(ngModel)]="password" type="password" ></ion-input>
+    </ion-item>
+      
+  </ion-list>      
+      
+  <button ion-button block round (click)='emailSignUp()'>Sign Up</button>
+  
+  <br>
+  
+  <div style="text-align: center">
+    <button ion-button round (click)='fbLogin()'><ion-icon name="logo-facebook"></ion-icon></button>
+  </div>
+
+  <div>
+    <p>if you are already a user please <a (click) = "logIn()">Sign in</a></p>
+  </div>
+
+</ion-content>
