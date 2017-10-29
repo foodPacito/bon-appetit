@@ -11,7 +11,6 @@ import { SignInPage } from './../sign-in/sign-in'
 
 
 
-
 @Component({
   selector: 'page-sign-up',
   templateUrl: 'sign-up.html',
@@ -19,6 +18,7 @@ import { SignInPage } from './../sign-in/sign-in'
 export class SignUpPage {
 
   restaurantsList = [];
+  usersList = [];
   restName; 
   name ;
   email ;
@@ -32,15 +32,54 @@ export class SignUpPage {
     private fb: Facebook,private toast: ToastController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignUpPage');
+  ionViewWillEnter(){
     this.db.list('/restaurants').valueChanges().subscribe( data => {
       if (this.restaurantsList.length === 0){
-        console.log(data)
-        console.log('=============================')
         for (var i = 0; i < data.length; i++){
           this.restaurantsList.push([data[i]['name'],data[i]['email']])
-          console.log(this.restaurantsList)
+        }
+      }
+      })
+      this.db.list('/Users').valueChanges().subscribe( data => {
+        if (this.usersList.length === 0){
+          for (var i = 0; i < data.length; i++){
+            this.usersList.push(data[i]['email'])
+          }
+        }
+        firebase.auth().onAuthStateChanged(user => {
+          if (user) {
+              for(var i = 0; i < this.usersList.length; i++){    
+                if (user.email === this.usersList[i]){
+                  this.navCtrl.setRoot(UserHomePage, {
+                    email: user.email
+                  });
+                }}
+    
+              for (var i = 0; i < this.restaurantsList.length; i++){
+                if (user.email === this.restaurantsList[i][1]){
+                  this.restName = this.restaurantsList[i][0]
+                  this.navCtrl.setRoot(HomePage, {
+                         restName: this.restName
+                  })
+                }
+              }
+    
+    
+              
+            
+          } else {
+            // No user is signed in.
+          }
+        });       
+      })
+
+  }
+
+  ionViewDidLoad() {
+    this.db.list('/restaurants').valueChanges().subscribe( data => {
+      if (this.restaurantsList.length === 0){
+        for (var i = 0; i < data.length; i++){
+          this.restaurantsList.push([data[i]['name'],data[i]['email']])
         }
       }
       })
@@ -54,8 +93,6 @@ export class SignUpPage {
           firebase.auth().signInWithCredential(fc).then(fs => {
           for (var i = 0; i < this.restaurantsList.length; i++){
             if (fs.email === this.restaurantsList[i][1]){
-              console.log('found it')
-              console.log(this.restaurantsList[i][0])
               this.restName = this.restaurantsList[i][0]
               this.navCtrl.setRoot(HomePage, {
                      restName: this.restName
@@ -65,13 +102,6 @@ export class SignUpPage {
           }).catch(ferr => {
             alert ('firebase err')
           })
-          console.log('Logged into Facebook!', res)
-          console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-          for (var key in res){
-            console.log (key + ":", res[key])
-          }
-          console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-          
         })
         .catch(e => console.log('Error logging into Facebook', e));
       
