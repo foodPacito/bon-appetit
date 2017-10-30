@@ -6,6 +6,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 
+// Firas \\
+import { Ionic2RatingModule } from 'ionic2-rating';
+// Firas \\
+
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AngularFireModule } from 'angularfire2';
@@ -62,7 +66,9 @@ var firebaseConfig = {
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    Ionic2RatingModule
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -30,13 +30,13 @@
 
       export class MapPage {
       
-      map: GoogleMap;
-      mapElement: HTMLElement;
-       @ViewChild('map') mapElement:ElementRef;
-       map: any;
-       restaurant 
-       restName;
-       locationss
+      // map: GoogleMap;
+      // mapElement: HTMLElement;
+      //  @ViewChild('map') mapElement:ElementRef;
+      //  map: any;
+      //  restaurant 
+      //  restName;
+      //  locationss
       //  location;
       //  latitude;
       //  longitude;
@@ -44,7 +44,7 @@
   constructor( 
    public navCtrl: NavController,
     public navParams: NavParams,
-     public geolocation: Geolocation,
+     public geolocation: Geolocation){
  
 //        let mapOptions = {
 //          center: location,
@@ -128,7 +128,4 @@
 //     })
 //    }
 
- }
-
-
- ///////////////google.maps.event.addListener(window, 'load', initMap);
+ }}
