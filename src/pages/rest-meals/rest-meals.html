@@ -47,5 +47,27 @@
 <button block round ion-button (click)="delivary()">Delivary</button>
 <button block round ion-button (click)="handPick()">order know</button><br>
 </div>
+
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\ Firas /////////////////////////// -->
+
+<hr/>
+<h4>Please give us your feedback</h4>
+
+<h5>Rating</h5>
+
+<rating [(ngModel)]="rate" 
+  readOnly="false"
+  max="5"
+  emptyStarIconName="star-outline"
+  halfStarIconName="star-half"
+  starIconName="star"
+  nullable="false"></rating>
+
+<ion-input type="text" aria-placeholder="Your comment" [(ngModel)] = "comment"></ion-input>
+
+<button ion-button round (click)="rateRes()">Submit</button>
+
+<!-- /////////////////////////// Firas \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
 </ion-content>
     

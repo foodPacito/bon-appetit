@@ -81,8 +81,7 @@ ionViewDidLoad() {
 
 
 
- addMarker(){
- 
+ addMarker(){ 
   let marker = new google.maps.Marker({
     map: this.map,
     animation: google.maps.Animation.DROP,
@@ -110,5 +109,3 @@ addInfoWindow(marker, content){
 
 }
 
-
-///////////////google.maps.event.addListener(window, 'load', initMap);

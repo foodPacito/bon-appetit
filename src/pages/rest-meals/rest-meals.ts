@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 
+// Firas
+import { AngularFireDatabase } from 'angularfire2/database'
+// Firas
+
 /**
  * Generated class for the RestMealsPage page.
  *
@@ -31,11 +35,18 @@ export class RestMealsPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public db: AngularFireDatabase) {
-  }
+    public db: AngularFireDatabase) { }
+  
+  // Firas
+  rate;
+  comment;
+  user;
 
   ionViewDidLoad() {
     this.restaurant = this.navParams.get('resturant');
+    // Firas
+    this.user = this.navParams.get('user');
+    // Firas
     this.availList=Object.keys(this.restaurant.available);
     console.log(this.restaurant)
     console.log(this.availList);
@@ -89,5 +100,24 @@ export class RestMealsPage {
   delivary(){
   	// this.navCtrl.push(DelivaryPage);
   }
+  
+  // Firas
+  rateRes(){
+    console.log(this.rate, this.comment)
+    this.db.object('/restaurants/'+this.restaurant.name+'/rating/'+this.user.phone).set({
+      email : this.user.email,
+      rating: this.rate
+    })
+    
+    if (this.comment) {
+    this.db.object('/restaurants/'+this.restaurant.name+'/reviews/'+this.user.phone).set({
+      email : this.user.email,
+      review: this.comment
+    })
+  }
 
+    this.comment = ""
+
+    }
+  // Firas
 }
