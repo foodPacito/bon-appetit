@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { OrderPage } from '../order/order';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 /**
@@ -65,22 +64,10 @@ export class RestMealsPage {
   handPickClick(){
     this.buttonClicked = !this.buttonClicked;
   }
-  // randOrderKey(){
-  //   for(var i=0; i<100; i++){
-  //     this.randOrderNum=Math.floor(Math.random()*1000)
-  //     }
-  // }
-
   handPick(){
-    for(var i=0; i<100; i++){
-      let randOrderNum=Math.floor(Math.random()*1000);
-      }
-      // this.obj={
-      //   randOrderNum: {meal:this.selected,
-      //               email:this.user[1],
-      //               meals :this.selectedmeal}
-      //  };
-      
+    // for(var i=0; i<100; i++){
+    //   let randOrderNum=Math.floor(Math.random()*1000);
+    //   }
     this.sendtorest= this.orderslist
     console.log(this.sendtorest)
     console.log(this.selected)
