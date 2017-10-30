@@ -14,23 +14,39 @@
 
 
 <ion-content padding>
-  <ion-list radio-group>
-  <ion-list-header>
-    <div *ngIf="restaurant">
-      {{restaurant.name}}
-    </div>
-  </ion-list-header>
+  <div *ngIf="restaurant" >
+    {{restaurant.name}}
+  </div>
+  <button block round ion-button (click)="order()" >order</button>
+    <div *ngIf="butOrderClicked"  >
+        <ion-item >
+            <!-- <ion-label>Meal</ion-label> -->
+            <ion-select interface="popover" [(ngModel)]="selectedmeal">
+              <ion-option value="{{meal}}" *ngFor="let meal of availList" >{{meal}}</ion-option>
+            </ion-select>
+          </ion-item>
+      </div>  
 
-  <ion-item *ngFor="let meal of availList">
-    <ion-label>{{meal}}</ion-label>
-    <ion-radio  value="meal"></ion-radio>
-  </ion-item>
-
-</ion-list>
-
-<button ion-button (click)="order()" >order</button>
-
-
+<div *ngIf="butOrderClicked">
+<strong>how do you want to take your meal </strong><br><br>
+<button block round ion-button (click)="handPickClick()">handPick</button><br>
+  <div *ngIf="buttonClicked"  >
+    
+    <ion-item>
+        <ion-label>Meal</ion-label>
+        <ion-select interface="popover" [(ngModel)]="selected">
+          <ion-option value="5 minute" >5 minute</ion-option>
+          <ion-option value="10 minute" >10 minute</ion-option>
+          <ion-option value="15 minute" >15 minute</ion-option>
+          <ion-option value="20 minute" >20 minute</ion-option>
+          <ion-option value="25 minute" >25 minute</ion-option>
+          <ion-option value="30 minute" >30 minute</ion-option>
+        </ion-select>
+      </ion-item>
+  </div>
+<button block round ion-button (click)="delivary()">Delivary</button>
+<button block round ion-button (click)="handPick()">order know</button><br>
+</div>
 
 <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\ Firas /////////////////////////// -->
 

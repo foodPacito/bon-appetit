@@ -62,6 +62,7 @@ export class UserHomePage {
   getKeysNum (obj) {
     return Object.keys(obj).length;
   }
+});
   goToMealsPage (rest) {
     this.navCtrl.push(RestMealsPage, {resturant: rest, 
       // Firas
