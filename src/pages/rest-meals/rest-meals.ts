@@ -14,6 +14,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
   templateUrl: 'rest-meals.html',
 })
 export class RestMealsPage {
+  address;
   restaurant;
   availList;
   usersList;
@@ -24,8 +25,8 @@ export class RestMealsPage {
   selectedmeal;
   buttonClicked: boolean = false;
   selectedTime;
-  butOrderClicked: boolean=false;
   obj;
+  delevarClicked: boolean = false;
   //randOrderNum
 
   constructor(
@@ -62,14 +63,13 @@ export class RestMealsPage {
     console.log('ionViewDidLoad OrderPage');
   }
 
-  
-  order() {
-  this.butOrderClicked= !this.butOrderClicked
-  
-  }
-
   handPickClick(){
     this.buttonClicked = !this.buttonClicked;
+    this.delevarClicked= false;    
+  }
+  delivaryClick(){
+    this.delevarClicked= !this.delevarClicked;
+    this.buttonClicked = false;
   }
   handPick(){
     // for(var i=0; i<100; i++){
@@ -78,8 +78,9 @@ export class RestMealsPage {
     this.sendtorest= this.orderslist
     console.log(this.sendtorest)
     const orderItem=this.db.list('/restaurants/'+this.restaurant.name+'/orders/')
-    orderItem.push({meal:this.selectedTime,
-      email:this.user.email,
+    orderItem.push({time:this.selectedTime,
+      phone: this.user.phone,
+      name:this.user.name,
       meals :this.selectedmeal,
       method: 'Hand pick'})
    console.log('--------------  --------------------')
@@ -87,16 +88,17 @@ export class RestMealsPage {
    console.log('the number is :',this.restaurant.available[this.selectedmeal].quantity)
    
 
-  let newNum = this.restaurant.available[this.selectedmeal].quantity - 1
+  let newNum = this.restaurant.available[this.selectedmeal].quantity   - 1
 
   if (newNum === 0) {
     this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal).remove();
-    
-  } else {
+      } else {
     this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal).set({
       name: this.selectedmeal,
       quantity: newNum
     })
+
+    this.navCtrl.pop()
   }
     // this.db.object('/restaurants/'+this.restName+'/available/'+name)
     // const itemsRef = this.db.object('//');
@@ -108,7 +110,29 @@ export class RestMealsPage {
   	// this.navCtrl.push(HandPickPage);
   }
   delivary(){
-  	// this.navCtrl.push(DelivaryPage);
+    
+    // this.navCtrl.push(DelivaryPage);
+    const orderItem=this.db.list('/restaurants/'+this.restaurant.name+'/orders/')
+    orderItem.push({
+      phone: this.user.phone,
+      name:this.user.name,
+      meals :this.selectedmeal,
+      method: 'Delivary',
+      address: this.address})
+
+      let newNum = this.restaurant.available[this.selectedmeal].quantity   - 1
+      
+        if (newNum === 0) {
+          this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal).remove();
+          
+        } else {
+          this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal).set({
+            name: this.selectedmeal,
+            quantity: newNum
+          })
+        }
+
+        this.navCtrl.pop()
   }
   
   // Firas
@@ -126,7 +150,7 @@ export class RestMealsPage {
     })
   }
 
-    this.comment = ""
+    this.comment = null;
 
     }
   // Firas
