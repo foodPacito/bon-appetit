@@ -91,4 +91,5 @@
         <variable name="APP_NAME" value="Bon-Appetit" />
     </plugin>
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
+    <allow-navigation href="http://192.168.1.3:8100" />
 </widget>

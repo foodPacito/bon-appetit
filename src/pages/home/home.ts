@@ -21,39 +21,22 @@ export class HomePage {
   avRating;
   raters;
   constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFireDatabase, private angularFireAuth: AngularFireAuth) {
+    // this.restName = 'Jubran'
     this.restName = navParams.get('restName');
 
-    this.db.list('/restaurants/'+ this.restName).valueChanges().subscribe( data => {
-      console.log("+++++++++++")
+    this.db.list('/restaurants/').valueChanges().subscribe( data => {
       console.log(data)
-      console.log('=============================')
-      if(typeof data[0] === 'object'){
-        this.restInfo['rating'] = [];
-        this.restInfo['reviews'] = [];
-      this.restInfo['name'] = data[4];
-      this.restInfo['image'] = data[6];
-      this.restInfo['phone'] = data[5];
-      for (var key in data[7]){
-      this.restInfo['rating'].push(data[7][key])}
-      for (var key in data[8]){
-        this.restInfo['reviews'].push(data[8][key])}
-      console.log(this.restInfo)} else {
-          this.restInfo['rating'] = [];
-          this.restInfo['reviews'] = [];
-        this.restInfo['name'] = data[3];
-        this.restInfo['image'] = data[5];
-        this.restInfo['phone'] = data[4];
-        for (var key in data[6]){
-        this.restInfo['rating'].push(data[6][key])
-        for (var key in data[7]){
-          this.restInfo['reviews'].push(data[7][key])}}
+      for (var i = 0; i < data.length; i++){
+        if (data[i]['name'] === this.restName){
+          this.restInfo = data[i]
+        }
       }
       var total = 0
-      for (var i = 0; i < this.restInfo['rating'].length; i++){
-         total += this.restInfo['rating'][i].rating
+      for (var key in this.restInfo['rating']){
+         total += this.restInfo['rating'][key].rating
       }
-      this.avRating = total/this.restInfo['rating'].length
-      this.raters = this.restInfo['rating'].length
+      this.avRating = (total/Object.keys(this.restInfo['rating']).length).toFixed(1)
+      this.raters = Object.keys(this.restInfo['rating']).length
     })
   }
 
@@ -71,7 +54,9 @@ export class HomePage {
 
   reqPage(){
     console.log("hi")
-    this.navCtrl.push(RequestsPage);
+    this.navCtrl.push(RequestsPage, {
+      restInfo: this.restInfo
+    });
   };
   mealPage(){
     this.navCtrl.push(MealsPage, {
