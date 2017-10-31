@@ -84,4 +84,7 @@ export class UserHomePage {
     }
     return this.rating.toFixed(1)
   }
+  goToMapPage(rest){
+    this.navCtrl.push(MapPage,{resturant: rest});
+  }
 }

@@ -25,28 +25,28 @@ let position;
    restaurant 
    restName;
    locationss
-   location;
-   latitude;
-   longitude;
+  //  location;
+  //  latitude;
+  //  longitude;
 
 constructor( 
 public navCtrl: NavController,
 public navParams: NavParams,
  public geolocation: Geolocation,
  private db: AngularFireDatabase) { 
-  this.restName = this.navParams.get('restName')
-  this.latitude=this.navParams.get('location.latitude')
-  this.longitude=this.navParams.get('location.longitude')
-  console.log(this.restName)
-  console.log(this.latitude)
-  console.log(this.latitude)
+  // this.restName = this.navParams.get('restName')
+  // this.latitude=this.navParams.get('location.latitude')
+  // this.longitude=this.navParams.get('location.longitude')
+  // console.log(this.restName)
+  // console.log(this.latitude)
+  // console.log(this.latitude)
   
 
-  this.db.list('/restaurants/'+ this.restName +'/available').valueChanges().subscribe( data => {
-    // console.log(data)
-    // console.log('=============================')
+  // this.db.list('/restaurants/'+ this.restName +'/available').valueChanges().subscribe( data => {
+  //   // console.log(data)
+  //   // console.log('=============================')
     
-  })
+  // })
 
 }  initMap(){
 this.restaurant = this.navParams.get('resturant');
@@ -81,7 +81,8 @@ ionViewDidLoad() {
 
 
 
- addMarker(){ 
+ addMarker(){
+ 
   let marker = new google.maps.Marker({
     map: this.map,
     animation: google.maps.Animation.DROP,
@@ -109,3 +110,5 @@ addInfoWindow(marker, content){
 
 }
 
+
+///////////////google.maps.event.addListener(window, 'load', initMap);
