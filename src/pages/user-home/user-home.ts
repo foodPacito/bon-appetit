@@ -55,26 +55,18 @@ export class UserHomePage {
     
   }
 
-  navToMap() {
-    this.navCtrl.push(RestMealsPage);
+  goToMealsPage(rest,user) {
+    this.navCtrl.push(RestMealsPage, {
+    rest: rest,
+    user: {
+      name: user[0],
+      email: user[1],
+      phone: user[2]
+    }
+  });
   }
 
   getKeysNum (obj) {
     return Object.keys(obj).length;
   }
-});
-  goToMealsPage (rest) {
-    this.navCtrl.push(RestMealsPage, {resturant: rest, 
-      // Firas
-      user: {
-      email: this.email,
-      phone: this.user[2]
-    }
-    // Firas
-  });
-  }
-  goToMapPage(rest){
-    this.navCtrl.push(MapPage,{resturant: rest});
-  }
-  
 }
