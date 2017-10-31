@@ -108,7 +108,7 @@ export class SignUpPage {
         this.password=Md5.hashStr(this.password);
         // console.log(this.password)
         this.angularFireAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(signUpData=>{
-          this.itemsRef = this.db.object('Users/' + this.email);
+          this.itemsRef = this.db.object('Users/' + this.phone);
           this.itemsRef.set(  
             { firstName: this.name,
               email: this.email,
@@ -132,4 +132,8 @@ export class SignUpPage {
           }).present();
           });
       }
+      goToLogIn() {
+        this.navCtrl.push(SignInPage);
+      }
+      
 }
