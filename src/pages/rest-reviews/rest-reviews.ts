@@ -27,7 +27,7 @@ reviews = [];
       for (var j = 0; j < this.reviews.length; j++){
         if (this.restInfo.rating[i].email === this.reviews[j].email){
           this.reviews[j]['rating'] = this.restInfo.rating[i].rating
-          break;
+          break;  
         }
       }
     }
