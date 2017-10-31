@@ -7,13 +7,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 
 declare var google :any;
 
-// let restaurant =[
-//      {name: 'Amman', lat:31.95638607801807 , lng:35.94535052776337 }
-//    ]
-
 let position;
-
-@IonicPage()
 @Component({
  selector: 'page-map',
  templateUrl: 'map.html',

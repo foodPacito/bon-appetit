@@ -6,9 +6,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Md5 } from 'ts-md5/dist/md5';
 import { SignInPage } from './../sign-in/sign-in'
-
+import { FacebookPage } from '../facebook/facebook';
 
 
 @Component({
@@ -87,44 +86,58 @@ export class SignUpPage {
         this.fb.login(['email'])
         .then((res) => {
           const fc = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken)
-          firebase.auth().signInWithCredential(fc).then(fs => {
-          for (var i = 0; i < this.restaurantsList.length; i++){
-            if (fs.email === this.restaurantsList[i][1]){
-              this.restName = this.restaurantsList[i][0]
-              this.navCtrl.setRoot(HomePage, {
-                     restName: this.restName
-              })
-            }
-          }
-          }).catch(ferr => {
-            alert ('firebase err')
+          
+          this.navCtrl.setRoot(FacebookPage, {
+            fc: fc
           })
+          // firebase.auth().signInWithCredential(fc).then(fs => {
+          // for (var i = 0; i < this.restaurantsList.length; i++){
+          //   if (fs.email === this.restaurantsList[i][1]){
+          //     this.restName = this.restaurantsList[i][0]
+          //     this.navCtrl.setRoot(HomePage, {
+          //            restName: this.restName
+          //     })
+          //   }
+          // }
+          // }).catch(ferr => {
+          //   alert ('firebase err')
+          // })
         })
         .catch(e => console.log('Error logging into Facebook', e));
       
   }
 
   emailSignUp() {
-        this.password=Md5.hashStr(this.password);
+
+    if (!this.name){
+      let toast = this.toast.create({
+        message: 'You need to fill your name first',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      return
+    } else if (!this.phone){
+      let toast = this.toast.create({
+        message: 'You need to fill your phone first',
+        duration: 2000,
+        position: 'top'
+      });
+      toast.present();
+      return
+    }
         // console.log(this.password)
         this.angularFireAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(signUpData=>{
           this.itemsRef = this.db.object('Users/' + this.phone);
           this.itemsRef.set(  
             { firstName: this.name,
               email: this.email,
-              password: this.password,
               phone: this.phone
             })
             
-              let toast = this.toast.create({
-                message: 'You\'ve signedUp successfully',
-                duration: 2000,
-                position: 'top'
-              });
-              toast.present();
-            
-          
-          this.navCtrl.setRoot(SignInPage)
+            this.navCtrl.setRoot(UserHomePage, {
+              email: this.email
+            });
         }).catch(err => {
           this.toast.create({
               message: err.message,

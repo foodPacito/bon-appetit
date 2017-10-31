@@ -48,6 +48,13 @@ export class SignInPage {
           console.log(this.restaurantsList)
         }
       }
+
+        this.db.list('Users').valueChanges().subscribe( data => {
+          if (data.length  > 0)
+         for (var i =0; i < data.length; i++){
+           this.usersList.push(data[i]['email'])
+         }
+        })
     })
   }
 
@@ -66,6 +73,15 @@ export class SignInPage {
             })
           }
         }
+
+        for (var i = 0; i < this.usersList.length; i++){
+          if (fs.email === this.usersList[i]){
+            this.navCtrl.setRoot(UserHomePage, {
+              email: fs.email
+            })
+          }
+        }
+        
       }).catch(ferr => {
           alert ('firebase err')
         })
@@ -84,8 +100,6 @@ export class SignInPage {
   }
    
   emailSignIn(){
-    this.password=Md5.hashStr(this.password);
-    // console.log(this.password)
     this.angularFireAuth.auth.signInWithEmailAndPassword(this.email,this.password).then(signedInData => {
       console.log(signedInData)
       this.navCtrl.setRoot(UserHomePage, {

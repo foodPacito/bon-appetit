@@ -28,21 +28,26 @@ export class RestMealsPage {
   obj;
   delevarClicked: boolean = false;
   //randOrderNum
-
+  rate;
+  comment;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public db: AngularFireDatabase) { }
   
   // Firas
-  rate;
-  comment;
+
 
   ionViewDidLoad() {
     this.restaurant = this.navParams.get('rest');
     // Firas
     this.user = this.navParams.get('user');
     // Firas
+    for (var key in this.restaurant['rating']){
+      if (this.user['email'] === this.restaurant['rating'][key]['email']){
+        this.rate = this.restaurant['rating'][key]['rating']
+      }
+    }
     this.availList=Object.keys(this.restaurant.available);
     console.log(this.restaurant)
     console.log("Availables:",this.availList);

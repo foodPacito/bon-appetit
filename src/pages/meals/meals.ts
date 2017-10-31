@@ -3,16 +3,6 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { AngularFireDatabase } from 'angularfire2/database'
 
 
-
-
-/**
- * Generated class for the MealsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-meals',
   templateUrl: 'meals.html',

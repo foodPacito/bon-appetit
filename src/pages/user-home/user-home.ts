@@ -4,7 +4,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestMealsPage } from '../rest-meals/rest-meals'
 import { AngularFireDatabase } from 'angularfire2/database';
 
-@IonicPage()
 @Component({
   selector: 'page-user-home',
   templateUrl: 'user-home.html',
