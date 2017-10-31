@@ -7,30 +7,32 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>RestMeals</ion-title>
+    <ion-title *ngIf="restaurant">{{restaurant.name}}'s Meals</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <div *ngIf="restaurant" >
-    {{restaurant.name}}
+  <div *ngIf="restaurant">
+    <strong>
+      <h3>
+       Available Meals
+      </h3>
+    </strong>
   </div>
-  <button block round ion-button (click)="order()" >order</button>
-    <div *ngIf="butOrderClicked"  >
-        <ion-item >
-            <!-- <ion-label>Meal</ion-label> -->
-            <ion-select interface="popover" [(ngModel)]="selectedmeal">
-              <ion-option value="{{meal}}" *ngFor="let meal of availList" >{{meal}}</ion-option>
-            </ion-select>
-          </ion-item>
-      </div>  
-
-<div *ngIf="butOrderClicked">
-<strong>how do you want to take your meal </strong><br><br>
-<button block round ion-button (click)="handPickClick()">handPick</button><br>
-  <div *ngIf="buttonClicked"  >
+  <div style="margin-bottom:30px">
+    <ion-item >
+      <ion-label>select your meal</ion-label>
+      <ion-select interface="popover" [(ngModel)]="selectedmeal">
+        <ion-option value="{{meal}}" *ngFor="let meal of availList" >{{meal}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </div>
+  <div>
+    <h5 text-center style="margin-bottom:15px">How do you want to take your meal </h5>
+    <button round ion-button (click)="handPickClick()">handPick</button>
+    <div *ngIf="buttonClicked"  >
     
     <ion-item>
         <ion-label>Meal</ion-label>
@@ -44,8 +46,9 @@
         </ion-select>
       </ion-item>
   </div>
-<button block round ion-button (click)="delivary()">Delivary</button>
-<button block round ion-button (click)="handPick()">order know</button><br>
+<button  round ion-button (click)="delivary()">Delivary</button>
+  <ion-input placeholder="Text Input" type="text" [(ngModel)] = "address"></ion-input>
+<button block round ion-button (click)="handPick()">order now</button><br>
 </div>
 
 <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\ Firas /////////////////////////// -->
@@ -62,9 +65,8 @@
   halfStarIconName="star-half"
   starIconName="star"
   nullable="false"></rating>
-
-<ion-input type="text" aria-placeholder="Your comment" [(ngModel)] = "comment"></ion-input>
-
+  <ion-label color="primary">Add Comment</ion-label>
+  <ion-input placeholder="Text Input" type="text" aria-placeholder="Your comment" [(ngModel)] = "comment"></ion-input>
 <button ion-button round (click)="rateRes()">Submit</button>
 
 <!-- /////////////////////////// Firas \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->

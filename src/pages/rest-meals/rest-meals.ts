@@ -2,10 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 
-// Firas
-import { AngularFireDatabase } from 'angularfire2/database'
-// Firas
-
 /**
  * Generated class for the RestMealsPage page.
  *
@@ -40,18 +36,17 @@ export class RestMealsPage {
   // Firas
   rate;
   comment;
-  user;
 
   ionViewDidLoad() {
-    this.restaurant = this.navParams.get('resturant');
+    this.restaurant = this.navParams.get('rest');
     // Firas
     this.user = this.navParams.get('user');
     // Firas
     this.availList=Object.keys(this.restaurant.available);
     console.log(this.restaurant)
-    console.log(this.availList);
+    console.log("Availables:",this.availList);
     //geting user information from (user-homepage)
-    this.user = this.navParams.get('user')
+    // this.user = this.navParams.get('user')
     console.log('----------------------------------')
     console.log(this.user)
     console.log('----------------------------------')
@@ -59,7 +54,7 @@ export class RestMealsPage {
       console.log(res)
     })
     
-    this.orderslist=Object.keys(this.restaurant.orders);
+    // this.orderslist=Object.keys(this.restaurant.orders);
     console.log('ionViewDidLoad OrderPage');
     console.log(this.orderslist)
     console.log(this.restaurant)
@@ -82,11 +77,12 @@ export class RestMealsPage {
     this.sendtorest= this.orderslist
     console.log(this.sendtorest)
     console.log(this.selected)
-    const orderItem=this.db.list('/restaurants/'+this.restaurant.name+'/orders/'+name)
+    const orderItem=this.db.list('/restaurants/'+this.restaurant.name+'/orders/')
     orderItem.push({meal:this.selected,
-      email:this.user[1],
-      meals :this.selectedmeal})
-   console.log('----------------------------------')
+      email:this.user.email,
+      meals :this.selectedmeal,
+      method: 'Hand pick'})
+   console.log('--------------  --------------------')
    console.log(orderItem);
     // this.db.object('/restaurants/'+this.restName+'/available/'+name)
     // const itemsRef = this.db.object('//');
