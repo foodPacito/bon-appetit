@@ -79,8 +79,9 @@ export class RestMealsPage {
     this.sendtorest= this.orderslist
     console.log(this.sendtorest)
     const orderItem=this.db.list('/restaurants/'+this.restaurant.name+'/orders/')
-    orderItem.push({meal:this.selectedTime,
-      email:this.user.email,
+    orderItem.push({time:this.selectedTime,
+      phone: this.user.phone,
+      name:this.user.name,
       meals :this.selectedmeal,
       method: 'Hand pick'})
    console.log('--------------  --------------------')
@@ -111,8 +112,9 @@ export class RestMealsPage {
   delivary(){
     // this.navCtrl.push(DelivaryPage);
     const orderItem=this.db.list('/restaurants/'+this.restaurant.name+'/orders/')
-    orderItem.push({meal:this.selectedTime,
-      email:this.user.email,
+    orderItem.push({
+      phone: this.user.phone,
+      name:this.user.name,
       meals :this.selectedmeal,
       method: 'Delivary',
       address: this.address})
