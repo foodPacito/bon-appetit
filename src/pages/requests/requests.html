@@ -14,7 +14,21 @@
 
 
 <ion-content padding>
-<h1>hello world</h1>
- <button ion-button (click)="MapPage()">Add Mark</button>
-
+    <ion-list *ngFor = "let order of orders">
+        <ion-item >
+            {{order['name']}}
+        </ion-item>
+        <ion-item>
+            {{order['phone']}}
+           </ion-item>
+           <ion-item>
+            by {{order['method']}}
+        </ion-item>
+        <ion-item>
+          estimated time to arrive {{order['time']}}
+        </ion-item>
+        <ion-item>
+          address {{order.address}}
+        </ion-item>
+      </ion-list>
 </ion-content>

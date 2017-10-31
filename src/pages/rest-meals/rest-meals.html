@@ -32,23 +32,27 @@
   <div>
     <h5 text-center style="margin-bottom:15px">How do you want to take your meal </h5>
     <button round ion-button (click)="handPickClick()">handPick</button>
-    <div *ngIf="buttonClicked"  >
-    
-    <ion-item>
-        <ion-label>Meal</ion-label>
-        <ion-select interface="popover" [(ngModel)]="selected">
-          <ion-option value="5 minute" >5 minute</ion-option>
-          <ion-option value="10 minute" >10 minute</ion-option>
-          <ion-option value="15 minute" >15 minute</ion-option>
-          <ion-option value="20 minute" >20 minute</ion-option>
-          <ion-option value="25 minute" >25 minute</ion-option>
-          <ion-option value="30 minute" >30 minute</ion-option>
-        </ion-select>
-      </ion-item>
+  <button  round ion-button (click)="delivaryClick()">Delivary</button>
+  <div *ngIf="buttonClicked"  >
+      
+      <ion-item>
+          <ion-label>How much time do you need to arraive?</ion-label>
+          <ion-select interface="popover" [(ngModel)]="selectedTime">
+            <ion-option value="5 minute" >5 minute</ion-option>
+            <ion-option value="10 minute" >10 minute</ion-option>
+            <ion-option value="15 minute" >15 minute</ion-option>
+            <ion-option value="20 minute" >20 minute</ion-option>
+            <ion-option value="25 minute" >25 minute</ion-option>
+            <ion-option value="30 minute" >30 minute</ion-option>
+          </ion-select>
+        </ion-item>
+    </div>
+  <div *ngIf="delevarClicked" >
+     <ion-input placeholder="Text Input" type="text" [(ngModel)] = "address"></ion-input>
   </div>
-<button  round ion-button (click)="delivary()">Delivary</button>
-  <ion-input placeholder="Text Input" type="text" [(ngModel)] = "address"></ion-input>
-<button block round ion-button (click)="handPick()">order now</button><br>
+<button block round ion-button *ngIf ='buttonClicked'(click)="handPick()">order now</button><br>
+<button block round ion-button *ngIf = "delevarClicked" (click)="delivary()">order now</button><br>
+
 </div>
 
 <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\ Firas /////////////////////////// -->
