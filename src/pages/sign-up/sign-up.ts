@@ -11,7 +11,6 @@ import { SignInPage } from './../sign-in/sign-in'
 
 
 
-
 @Component({
   selector: 'page-sign-up',
   templateUrl: 'sign-up.html',
@@ -19,6 +18,7 @@ import { SignInPage } from './../sign-in/sign-in'
 export class SignUpPage {
 
   restaurantsList = [];
+  usersList = [];
   restName; 
   name ;
   email ;
@@ -32,18 +32,54 @@ export class SignUpPage {
     private fb: Facebook,private toast: ToastController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignUpPage');
+  ionViewWillEnter(){
+  // when the page is ready
+    // get the restaurants from the database 
     this.db.list('/restaurants').valueChanges().subscribe( data => {
       if (this.restaurantsList.length === 0){
-        console.log(data)
-        console.log('=============================')
         for (var i = 0; i < data.length; i++){
           this.restaurantsList.push([data[i]['name'],data[i]['email']])
-          console.log(this.restaurantsList)
         }
       }
       })
+    
+    // get the users from the database
+    this.db.list('/Users').valueChanges().subscribe( data => {
+      if (this.usersList.length === 0){
+        for (var i = 0; i < data.length; i++){
+          this.usersList.push(data[i]['email'])
+        }
+      }
+      
+      // check if there's a user already signed in
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          // if there, check if the user is a customer
+          for(var i = 0; i < this.usersList.length; i++){    
+            if (user.email === this.usersList[i]){
+              // if yes, go the user home page
+              this.navCtrl.setRoot(UserHomePage, {
+                email: user.email
+              });
+            }
+          }
+          
+          // if not a customer, check if he is a restaurant
+          for (var i = 0; i < this.restaurantsList.length; i++){
+            if (user.email === this.restaurantsList[i][1]){
+              this.restName = this.restaurantsList[i][0]
+              // if yes, go to the restaurant home page
+              this.navCtrl.setRoot(HomePage, {
+                restName: this.restName
+              })
+            }
+          }
+        } else {
+            // No user is signed in.
+          }
+      });       
+    })
+
   }
 
   fbLogin() {
@@ -54,8 +90,6 @@ export class SignUpPage {
           firebase.auth().signInWithCredential(fc).then(fs => {
           for (var i = 0; i < this.restaurantsList.length; i++){
             if (fs.email === this.restaurantsList[i][1]){
-              console.log('found it')
-              console.log(this.restaurantsList[i][0])
               this.restName = this.restaurantsList[i][0]
               this.navCtrl.setRoot(HomePage, {
                      restName: this.restName
@@ -65,13 +99,6 @@ export class SignUpPage {
           }).catch(ferr => {
             alert ('firebase err')
           })
-          console.log('Logged into Facebook!', res)
-          console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-          for (var key in res){
-            console.log (key + ":", res[key])
-          }
-          console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-          
         })
         .catch(e => console.log('Error logging into Facebook', e));
       
@@ -105,8 +132,4 @@ export class SignUpPage {
           }).present();
           });
       }
-  
-  logIn (){
-    this.navCtrl.push(SignInPage)
-  }
 }

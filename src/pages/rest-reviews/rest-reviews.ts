@@ -18,15 +18,16 @@ restInfo;
 reviews = [];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.restInfo = navParams.get('restInfo')
-    console.log(this.restInfo.rating)
+    console.log(JSON.stringify(this.restInfo.rating))
     for (var i = 0; i < this.restInfo.reviews.length; i++){
-      this.reviews.push({email: this.restInfo.reviews[i].userEmail, text: this.restInfo.reviews[i].review})
-      console.log(this.reviews)
+      this.reviews.push({email: this.restInfo.reviews[i].email, text: this.restInfo.reviews[i].review})
+      console.log(JSON.stringify(this.reviews))
     }
     for (var i = 0; i < this.restInfo.rating.length; i++){
       for (var j = 0; j < this.reviews.length; j++){
-        if (this.restInfo.rating[i].userEmail === this.reviews[j].email){
+        if (this.restInfo.rating[i].email === this.reviews[j].email){
           this.reviews[j]['rating'] = this.restInfo.rating[i].rating
+          break;
         }
       }
     }
