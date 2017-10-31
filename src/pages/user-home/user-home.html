@@ -28,7 +28,10 @@
         </button>
       </ion-fab>
       <div (click)="goToMealsPage(rest,user)" class="card-title">{{rest.name}}</div>
-      <div (click)="goToMealsPage(rest,user)" class="card-subtitle">{{getKeysNum(rest.available)}} items</div>
+      <div (click)="goToMealsPage(rest,user)" class="card-subtitle">
+        <div>{{getKeysNum(rest.available)}} items</div>
+        <div>{{getRating(rest.name)}} out of 5</div>
+      </div>
     </ion-card>
   </div>
   <!-- <ion-card>

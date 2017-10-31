@@ -20,6 +20,8 @@ export class UserHomePage {
   usersList = [];
   email;
   user;
+  rating;
+  raters
   
   constructor(
     public navCtrl: NavController,
@@ -68,5 +70,24 @@ export class UserHomePage {
 
   getKeysNum (obj) {
     return Object.keys(obj).length;
+  }
+
+  getRating(name){
+    var total = 0
+
+    for (var i = 0; i < this.resList.length; i++){
+      if (this.resList[i].name === name){
+        console.log('found the res')
+        console.log(this.resList[i])
+        for (var key in this.resList[i]['rating']){
+          console.log(this.resList[i])
+          total += this.resList[i]['rating'][key].rating
+       }
+       console.log(total, 'total  ')
+       this.rating = total/Object.keys(this.resList[i]['rating']).length
+       this.raters = Object.keys(this.resList[i]['rating']).length
+      }
+    }
+    return this.rating.toFixed(1)
   }
 }

@@ -14,6 +14,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
   templateUrl: 'rest-meals.html',
 })
 export class RestMealsPage {
+  address;
   restaurant;
   availList;
   usersList;
@@ -78,8 +79,9 @@ export class RestMealsPage {
     this.sendtorest= this.orderslist
     console.log(this.sendtorest)
     const orderItem=this.db.list('/restaurants/'+this.restaurant.name+'/orders/')
-    orderItem.push({meal:this.selectedTime,
-      email:this.user.email,
+    orderItem.push({time:this.selectedTime,
+      phone: this.user.phone,
+      name:this.user.name,
       meals :this.selectedmeal,
       method: 'Hand pick'})
    console.log('--------------  --------------------')
@@ -87,7 +89,7 @@ export class RestMealsPage {
    console.log('the number is :',this.restaurant.available[this.selectedmeal].quantity)
    
 
-  let newNum = this.restaurant.available[this.selectedmeal].quantity - 1
+  let newNum = this.restaurant.available[this.selectedmeal].quantity   - 1
 
   if (newNum === 0) {
     this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal).remove();
@@ -108,7 +110,26 @@ export class RestMealsPage {
   	// this.navCtrl.push(HandPickPage);
   }
   delivary(){
-  	// this.navCtrl.push(DelivaryPage);
+    // this.navCtrl.push(DelivaryPage);
+    const orderItem=this.db.list('/restaurants/'+this.restaurant.name+'/orders/')
+    orderItem.push({
+      phone: this.user.phone,
+      name:this.user.name,
+      meals :this.selectedmeal,
+      method: 'Delivary',
+      address: this.address})
+
+      let newNum = this.restaurant.available[this.selectedmeal].quantity   - 1
+      
+        if (newNum === 0) {
+          this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal).remove();
+          
+        } else {
+          this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal).set({
+            name: this.selectedmeal,
+            quantity: newNum
+          })
+        }
   }
   
   // Firas
@@ -126,7 +147,7 @@ export class RestMealsPage {
     })
   }
 
-    this.comment = ""
+    this.comment = null;
 
     }
   // Firas
