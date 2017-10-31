@@ -3,12 +3,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestMealsPage } from '../rest-meals/rest-meals'
 import { AngularFireDatabase } from 'angularfire2/database';
-/**
- * Generated class for the UserHomePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AngularFireAuth } from 'angularfire2/auth';
+import { SignUpPage } from '../sign-up/sign-up';
 
 @IonicPage()
 @Component({
@@ -20,12 +16,13 @@ export class UserHomePage {
   usersList = [];
   email;
   user;
-  
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public db: AngularFireDatabase) {
-  }
+    public db: AngularFireDatabase,
+    public afa: AngularFireAuth) {  }
+
   ionViewWillEnter () {
     this.db.list('/restaurants').valueChanges().subscribe(res => {
       this.resList = res;
@@ -41,18 +38,18 @@ export class UserHomePage {
         }
         console.log(this.usersList)
       }
-
-
-    this.email = this.navParams.get('email')
-
-    for(var i = 0; i < this.usersList.length; i++){      
+    this.email = this.navParams.get('email');
+    for(var i = 0; i < this.usersList.length; i++) {      
       if (this.email === this.usersList[i][1]){
         this.user = this.usersList[i]
         console.log("found", this.user)
       }
     }
     })
-    
+  }
+
+  signOut() {
+    this.afa.auth.signOut().then(res => this.navCtrl.setRoot(SignUpPage))
   }
 
   goToMealsPage(rest,user) {

@@ -83,53 +83,51 @@ export class SignUpPage {
   }
 
   fbLogin() {
-    
-        this.fb.login(['email'])
-        .then((res) => {
-          const fc = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken)
-          firebase.auth().signInWithCredential(fc).then(fs => {
-          for (var i = 0; i < this.restaurantsList.length; i++){
-            if (fs.email === this.restaurantsList[i][1]){
-              this.restName = this.restaurantsList[i][0]
-              this.navCtrl.setRoot(HomePage, {
-                     restName: this.restName
-              })
-            }
-          }
-          }).catch(ferr => {
-            alert ('firebase err')
+    this.fb.login(['email'])
+    .then((res) => {
+      const fc = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken)
+      firebase.auth().signInWithCredential(fc).then(fs => {
+      for (var i = 0; i < this.restaurantsList.length; i++){
+        if (fs.email === this.restaurantsList[i][1]){
+          this.restName = this.restaurantsList[i][0]
+          this.navCtrl.setRoot(HomePage, {
+                  restName: this.restName
           })
-        })
-        .catch(e => console.log('Error logging into Facebook', e));
-      
+        }
+      }
+      }).catch(ferr => {
+        alert ('firebase err')
+      })
+    })
+    .catch(e => console.log('Error logging into Facebook', e));
   }
 
   emailSignUp() {
-        this.password=Md5.hashStr(this.password);
-        // console.log(this.password)
-        this.angularFireAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(signUpData=>{
-          this.itemsRef = this.db.object('Users/' + this.email);
-          this.itemsRef.set(  
-            { firstName: this.name,
-              email: this.email,
-              password: this.password,
-              phone: this.phone
-            })
-            
-              let toast = this.toast.create({
-                message: 'You\'ve signedUp successfully',
-                duration: 2000,
-                position: 'top'
-              });
-              toast.present();
-            
-          
-          this.navCtrl.setRoot(SignInPage)
-        }).catch(err => {
-          this.toast.create({
-              message: err.message,
-              duration: 6000
-          }).present();
+    this.password=Md5.hashStr(this.password);
+    // console.log(this.password)
+    this.angularFireAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(signUpData=>{
+      this.itemsRef = this.db.object('Users/' + this.email);
+      this.itemsRef.set(  
+        { firstName: this.name,
+          email: this.email,
+          password: this.password,
+          phone: this.phone
+        })
+          let toast = this.toast.create({
+            message: 'You\'ve signedUp successfully',
+            duration: 2000,
+            position: 'top'
           });
-      }
+          toast.present();
+      this.navCtrl.setRoot(SignInPage)
+    }).catch(err => {
+      this.toast.create({
+          message: err.message,
+          duration: 6000
+      }).present();
+      });
+  }
+  goToLogIn() {
+    this.navCtrl.push(SignInPage);
+  }
 }
