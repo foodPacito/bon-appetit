@@ -24,10 +24,10 @@
            <ion-item>
             by {{order['method']}}
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="order['time']">
           estimated time to arrive {{order['time']}}
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="order['address']">
           address {{order.address}}
         </ion-item>
       </ion-list>
