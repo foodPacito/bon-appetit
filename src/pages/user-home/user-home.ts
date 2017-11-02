@@ -4,6 +4,8 @@ import { RestMealsPage } from '../rest-meals/rest-meals'
 import { AngularFireDatabase } from 'angularfire2/database';
 import { MapPage } from '../map/map';
 import { Storage } from '@ionic/storage';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { SignUpPage } from '../sign-up/sign-up';
 
 @Component({
   selector: 'page-user-home',
@@ -20,8 +22,9 @@ export class UserHomePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public db: AngularFireDatabase) {
-  }
+    public db: AngularFireDatabase,
+    public afa: AngularFireAuth) {  }
+
   ionViewWillEnter () {
     this.db.list('/restaurants').valueChanges().subscribe(res => {
       this.resList = res;
@@ -33,16 +36,17 @@ export class UserHomePage {
           this.usersList.push([data[i]['firstName'],data[i]['email'],data[i]['phone']])
         }
       }
-
-
-    this.email = this.navParams.get('email')
-    for(var i = 0; i < this.usersList.length; i++){      
+    this.email = this.navParams.get('email');
+    for(var i = 0; i < this.usersList.length; i++) {      
       if (this.email === this.usersList[i][1]){
         this.user = this.usersList[i]
       }
     }
     })
-    
+  }
+
+  signOut() {
+    this.afa.auth.signOut().then(res => this.navCtrl.setRoot(SignUpPage))
   }
 
   goToMealsPage(rest,user) {

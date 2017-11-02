@@ -3,19 +3,15 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { MapPage } from '../pages/map/map';
-
-
-import { SignInPage } from '../pages/sign-in/sign-in';
 
 //import { MapPage } from '../pages/map/map';
-import { UserHomePage } from '../pages/user-home/user-home';
+
 @Component({
   templateUrl: 'app.html'
 })
+
 export class MyApp {
-
-
+  
   rootPage:any = SignUpPage;
 
   constructor(
