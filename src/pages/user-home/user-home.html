@@ -1,24 +1,14 @@
-<!--
-  Generated template for the UserHomePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>user-home</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="user">Welcome {{user[0]}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 <ion-content padding class="card-background-page outer-content">
-
-  <div *ngIf="user">
-  <h1>UserName: {{user[0]}}</h1>
-  <h3>UserPhone: {{user[2]}}</h3>
-</div>
-
-  <br>
   <div *ngIf="resList">
     <ion-card *ngFor="let rest of resList">
       <img (click)="goToMealsPage(rest,user)" src={{rest.pic}}/>
@@ -30,7 +20,7 @@
       <div (click)="goToMealsPage(rest,user)" class="card-title">{{rest.name}}</div>
       <div (click)="goToMealsPage(rest,user)" class="card-subtitle">
         <div>{{getKeysNum(rest.available)}} items</div>
-        <div>{{getRating(rest.name)}} out of 5</div>
+        <!-- <div>{{getRating(rest.name)}} out of 5</div> -->
       </div>
     </ion-card>
   </div>

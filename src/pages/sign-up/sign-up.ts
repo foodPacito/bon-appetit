@@ -1,7 +1,7 @@
 import { UserHomePage } from './../user-home/user-home';
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController, MenuController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
@@ -25,14 +25,26 @@ export class SignUpPage {
   itemsRef;
   phone;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
     public angularFireAuth: AngularFireAuth,
     private db: AngularFireDatabase,
-    private fb: Facebook,private toast: ToastController) {
-  }
+    private fb: Facebook,
+    private toast: ToastController,
+    public menu: MenuController
+    ) {}
 
-  ionViewWillEnter(){
-  // when the page is ready
+  ionViewDidEnter() {
+    this.menu.enable(false);
+  }
+  ionViewWillLeave() {
+    // to enable menu.
+    this.menu.enable(true);
+  }
+  ionViewWillEnter() {
+    // this.menu.enable(true, "menu");
+    // when the page is ready
     // get the restaurants from the database 
     this.db.list('/restaurants').valueChanges().subscribe( data => {
       if (this.restaurantsList.length === 0){
@@ -82,28 +94,27 @@ export class SignUpPage {
   }
 
   fbLogin() {
-    
-        this.fb.login(['email'])
-        .then((res) => {
-          const fc = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken)
-          
-          this.navCtrl.setRoot(FacebookPage, {
-            fc: fc
-          })
-          // firebase.auth().signInWithCredential(fc).then(fs => {
-          // for (var i = 0; i < this.restaurantsList.length; i++){
-          //   if (fs.email === this.restaurantsList[i][1]){
-          //     this.restName = this.restaurantsList[i][0]
-          //     this.navCtrl.setRoot(HomePage, {
-          //            restName: this.restName
-          //     })
-          //   }
-          // }
-          // }).catch(ferr => {
-          //   alert ('firebase err')
-          // })
-        })
-        .catch(e => console.log('Error logging into Facebook', e));
+    this.fb.login(['email'])
+    .then((res) => {
+      const fc = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken)
+      
+      this.navCtrl.setRoot(FacebookPage, {
+        fc: fc
+      })
+      // firebase.auth().signInWithCredential(fc).then(fs => {
+      // for (var i = 0; i < this.restaurantsList.length; i++){
+      //   if (fs.email === this.restaurantsList[i][1]){
+      //     this.restName = this.restaurantsList[i][0]
+      //     this.navCtrl.setRoot(HomePage, {
+      //            restName: this.restName
+      //     })
+      //   }
+      // }
+      // }).catch(ferr => {
+      //   alert ('firebase err')
+      // })
+    })
+    .catch(e => console.log('Error logging into Facebook', e));
       
   }
 
