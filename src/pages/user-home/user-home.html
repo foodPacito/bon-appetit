@@ -17,6 +17,8 @@
   <h1>UserName: {{user[0]}}</h1>
   <h3>UserPhone: {{user[2]}}</h3>
 </div>
+<button ion-button (click)='sortByRating()' > Sort by Rate </button>
+<button ion-button (click)='sortByName()' >Sort by Name</button>
 
   <br>
   <div *ngIf="resList">

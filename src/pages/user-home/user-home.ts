@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestMealsPage } from '../rest-meals/rest-meals'
 import { AngularFireDatabase } from 'angularfire2/database';
 import { MapPage } from '../map/map';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-user-home',
@@ -79,7 +80,24 @@ export class UserHomePage {
     }
     return this.rating.toFixed(1)
   }
-  goToMapPage(rest){
-    this.navCtrl.push(MapPage,{resturant: rest});
+
+  sortByName(){
+    this.resList.sort((a,b) => {
+      var nameA = a.name.toUpperCase();
+      var nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+    }
+  })
+} 
+
+  sortByRating(){
+    for(var i = 0; i < this.resList.length; i++){
+      this.resList[i]['rate'] = this.getRating(this.resList[i]['name'])
+    }
+    this.resList.sort((a,b) => b.rate - a.rate)
   }
 }
