@@ -92,7 +92,7 @@ export class UserHomePage {
         return 1;
     }
   })
-}
+} 
 
   sortByRating(){
     for(var i = 0; i < this.resList.length; i++){

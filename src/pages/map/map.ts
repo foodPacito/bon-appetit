@@ -24,9 +24,7 @@ export class MapPage {
   map: GoogleMap;
   options : GeolocationOptions;
   currentPos : Geoposition;
-  rest
-
-  
+  rest  
 
   constructor(public navCtrl: NavController, 
     private geolocation : Geolocation, 
