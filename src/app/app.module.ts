@@ -30,6 +30,7 @@ import { SignInPage } from '../pages/sign-in/sign-in';
 import { MapPage } from '../pages/map/map';
 import { RestReviewsPage } from '../pages/rest-reviews/rest-reviews';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { FacebookPage } from '../pages/facebook/facebook';
 
 
 var firebaseConfig = {
@@ -54,7 +55,8 @@ var firebaseConfig = {
     SignInPage,
     MapPage,
     RestReviewsPage,
-    SignUpPage
+    SignUpPage,
+    FacebookPage
   ],
   imports: [
     BrowserModule,
@@ -79,7 +81,8 @@ var firebaseConfig = {
     SignInPage,
     MapPage,
     RestReviewsPage,
-    SignUpPage
+    SignUpPage,
+    FacebookPage
 
   ],
   providers: [
