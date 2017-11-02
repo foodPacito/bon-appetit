@@ -98,6 +98,6 @@ export class UserHomePage {
     for(var i = 0; i < this.resList.length; i++){
       this.resList[i]['rate'] = this.getRating(this.resList[i]['name'])
     }
-    this.resList.sort((a,b) => a.rate - b.rate)
+    this.resList.sort((a,b) => b.rate - a.rate)
   }
 }
