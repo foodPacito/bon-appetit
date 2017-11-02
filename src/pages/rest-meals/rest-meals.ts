@@ -43,24 +43,26 @@ export class RestMealsPage {
     // Firas
     this.user = this.navParams.get('user');
     // Firas
-    this.availList=Object.keys(this.restaurant.available);
-    console.log(this.restaurant)
-    console.log("Availables:",this.availList);
+    // this.availList=Object.keys(this.restaurant.available);
+    //passig the list of available meals (available) to show them in html page
+    this.db.list('/restaurants/'+ this.restaurant.name +'/available').valueChanges().subscribe(data=>{ 
+      this.availList=data
+
+    })
+
+    
     //geting user information from (user-homepage)
     // this.user = this.navParams.get('user')
     console.log('----------------------------------')
-    console.log(this.user)
+    // console.log(this.user)
 
+  
     console.log('----------------------------------')
     this.db.list('/restaurants/'+ this.restaurant.name +'/orders').valueChanges().subscribe( res => {
       console.log(res)
     })
     
     // this.orderslist=Object.keys(this.restaurant.orders);
-    console.log('ionViewDidLoad OrderPage');
-    console.log(this.orderslist)
-    console.log(this.restaurant)
-    console.log('ionViewDidLoad OrderPage');
   }
 
   handPickClick(){
@@ -71,6 +73,12 @@ export class RestMealsPage {
     this.delevarClicked= !this.delevarClicked;
     this.buttonClicked = false;
   }
+
+  //take the meal chosen from user ad pass it to selectmeals function
+  public selectmeals(mealchosen){
+    this.selectedmeal= mealchosen;
+  }
+  
   handPick(){
     // for(var i=0; i<100; i++){
     //   let randOrderNum=Math.floor(Math.random()*1000);
@@ -81,20 +89,20 @@ export class RestMealsPage {
     orderItem.push({time:this.selectedTime,
       phone: this.user.phone,
       name:this.user.name,
-      meals :this.selectedmeal,
+      meals :this.selectedmeal.name,
       method: 'Hand pick'})
-   console.log('--------------  --------------------')
-   console.log(orderItem);
-   console.log('the number is :',this.restaurant.available[this.selectedmeal].quantity)
-   
 
-  let newNum = this.restaurant.available[this.selectedmeal].quantity   - 1
+  let newNum = this.restaurant.available[this.selectedmeal.name].quantity   - 1
 
   if (newNum === 0) {
-    this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal).remove();
+    this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal.name).remove();
+
+    // this.db.object('/restaurants/'+this.restaurant.pic+'/available/'+this.selectedmeal).remove();
+
       } else {
-    this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal).set({
-      name: this.selectedmeal,
+    this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal.name).set({
+      name: this.selectedmeal.name,
+      pic: this.selectedmeal.pic,
       quantity: newNum
     })
 
@@ -116,18 +124,18 @@ export class RestMealsPage {
     orderItem.push({
       phone: this.user.phone,
       name:this.user.name,
-      meals :this.selectedmeal,
+      meals :this.selectedmeal.name,
       method: 'Delivary',
       address: this.address})
 
-      let newNum = this.restaurant.available[this.selectedmeal].quantity   - 1
+      let newNum = this.restaurant.available[this.selectedmeal.name].quantity   - 1
       
         if (newNum === 0) {
-          this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal).remove();
+          this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal.name).remove();
           
         } else {
-          this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal).set({
-            name: this.selectedmeal,
+          this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal.name).set({
+            name: this.selectedmeal.name,
             quantity: newNum
           })
         }
