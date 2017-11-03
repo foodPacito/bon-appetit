@@ -6,6 +6,7 @@ import { MapPage } from '../map/map';
 import { Storage } from '@ionic/storage';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { SignUpPage } from '../sign-up/sign-up';
+import firebase from 'firebase';
 
 @Component({
   selector: 'page-user-home',
@@ -24,7 +25,7 @@ export class UserHomePage {
     public navParams: NavParams,
     public db: AngularFireDatabase,
     public afa: AngularFireAuth) {  }
-
+  
   ionViewWillEnter () {
     this.db.list('/restaurants').valueChanges().subscribe(res => {
       this.resList = res;
@@ -44,7 +45,7 @@ export class UserHomePage {
     }
     })
   }
-
+  
   signOut() {
     this.afa.auth.signOut().then(res => this.navCtrl.setRoot(SignUpPage))
   }

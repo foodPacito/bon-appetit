@@ -1,18 +1,15 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>signUp</ion-title>
+    <ion-title>
+      Sign up
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
   <ion-list>
-    
     <ion-item>
-      <ion-label stacked>Username</ion-label>
+      <ion-label stacked>User Name</ion-label>
       <ion-input [(ngModel)]="name" type="text" ></ion-input>
     </ion-item>
 
@@ -30,19 +27,17 @@
       <ion-label stacked>Password</ion-label>
       <ion-input [(ngModel)]="password" type="password" ></ion-input>
     </ion-item>
-      
+     
   </ion-list>      
       
-  <button ion-button block round (click)='emailSignUp()'>Sign Up</button>
+  <button ion-button block round (click)='emailSignUp()' style="margin-bottom:1em; font-family:Arial, Helvetica, sans-serif; font-size:110%;font-weight: bold;">Sign Up</button>
   
-  <br>
-  
-  <div style="text-align: center">
-    <button ion-button round (click)='fbLogin()'><ion-icon name="logo-facebook"></ion-icon></button>
+  <div style="text-align: center; margin-bottom:3em; font-family:Arial, Helvetica, sans-serif;">
+    <button ion-button round block (click)='fbLogin()'><ion-icon name="logo-facebook" style="font-size: 140%;"><span style="margin-left:1em; font-weight: bold; font-family:Arial, Helvetica, sans-serif; font-size: 90%;">Facebook Sign up</span></ion-icon></button>
   </div>
 
   <div>
-    <p>if you are already a user please <a (click) = "goToLogIn()">Sign in</a></p>
+    <p>if you are already a user please <a style="font-weight: bold; font-family:Arial, Helvetica, sans-serif; font-size:120%" (click) = "goToLogIn()">Sign in</a></p>
   </div>
 
 </ion-content>
