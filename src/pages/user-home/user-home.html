@@ -8,6 +8,7 @@
   </ion-navbar>
 
 </ion-header>
+
 <ion-content padding class="card-background-page outer-content">
 <button ion-button (click)='sortByRating()' > Sort by Rate </button>
 <button ion-button (click)='sortByName()' >Sort by Name</button>
@@ -22,30 +23,8 @@
       <div (click)="goToMealsPage(rest,user)" class="card-title">{{rest.name}}</div>
       <div (click)="goToMealsPage(rest,user)" class="card-subtitle">
         <div>{{getKeysNum(rest.available)}} items</div>
-        <!-- <div>{{getRating(rest.name)}} out of 5</div> -->
+        <div>{{getRating(rest.name)}} out of 5</div>
       </div>
     </ion-card>
   </div>
-  <button ion-button (click)="signOut()">Sign Out</button>
-  <!-- <ion-card>
-    <img src="https://www.scandichotels.com/imagevault/publishedmedia/qn6infvg30381stkubky/scandic-sundsvall-city-restaurant-verket-10.jpg"/>
-    <ion-fab right top>
-      <button ion-fab>
-        <ion-icon name="pin"></ion-icon>
-      </button>
-    </ion-fab>
-    <div class="card-title">Boho House</div>
-    <div class="card-subtitle">3 Items</div>
-  </ion-card>
-  <ion-card>
-    <img src="http://www.stanleyhotel.com/uploads/9/8/6/9/98696462/published/20111115-cascades001v2_3.jpeg"/>
-    <div class="card-title">Fancy Restaurant</div>
-    <div class="card-subtitle">2 Items</div>
-  </ion-card>
-  <ion-card>
-    <img src="https://media-cdn.tripadvisor.com/media/photo-s/0a/7b/7b/c6/restaurant-view.jpg"/>
-    <div class="card-title">Aalya</div>
-    <div class="card-subtitle">2 Items</div>
-  </ion-card>
-  <button ion-button block round (click)='goToMealsPage()'>Go To Meals</button> -->
 </ion-content>
