@@ -9,6 +9,8 @@
 
 </ion-header>
 <ion-content padding class="card-background-page outer-content">
+<button ion-button (click)='sortByRating()' > Sort by Rate </button>
+<button ion-button (click)='sortByName()' >Sort by Name</button>
   <div *ngIf="resList">
     <ion-card *ngFor="let rest of resList">
       <img (click)="goToMealsPage(rest,user)" src={{rest.pic}}/>
