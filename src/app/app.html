@@ -1,4 +1,4 @@
-<ion-menu [content]="myContent">
+<ion-menu [content]="myContent" id="menu">
   <ion-header>
     <ion-toolbar color="secondary">
       <ion-title>Menu</ion-title>
@@ -7,8 +7,11 @@
 
   <ion-content>
     <ion-list>
-      <button ion-item menuClose="menu" detail-none>
-        Close Menu
+      <button ion-item>
+        Home
+      </button>
+      <button ion-item (click)="signOut()">
+        Sign Out
       </button>
     </ion-list>
   </ion-content>

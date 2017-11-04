@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, MenuController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
@@ -32,12 +32,14 @@ export class SignInPage {
     public changeDetector: ChangeDetectorRef,
     private db: AngularFireDatabase,
     private toast: ToastController,
-    private fb: Facebook) {
-  }
+    private fb: Facebook,
+    public menu: MenuController) {}
 
     //  MarkerMap(){
     //   this.navCtrl.push(MapPage);
     //  }
+  
+  
   ionViewDidLoad() {
     this.db.list('/restaurants').valueChanges().subscribe( data => {
       if (this.restaurantsList.length === 0){
