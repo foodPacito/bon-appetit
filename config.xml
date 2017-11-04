@@ -97,4 +97,8 @@
         <variable name="APP_NAME" value="Bon-Appetit" />
     </plugin>
     <allow-navigation href="http://192.168.8.115:8100" />
+    <plugin name="phonegap-plugin-push" spec="^2.1.0">
+        <variable name="FCM_VERSION" value="11.0.1" />
+    </plugin>
+    <allow-navigation href="http://192.168.8.121:8100" />
 </widget>
