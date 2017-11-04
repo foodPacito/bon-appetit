@@ -47,6 +47,15 @@ export class RestMealsPage {
     //passig the list of available meals (available) to show them in html page
     this.db.list('/restaurants/'+ this.restaurant.name +'/available').valueChanges().subscribe(data=>{ 
       this.availList=data
+      console.log('available:',this.availList)
+      console.log(this.restaurant.menu)
+      for (var i =  0; i < this.availList.length; i++){
+        for (var key in this.restaurant.menu){
+          if (this.availList[i]['name'] === this.restaurant.menu[key]['name']){
+            this.availList[i]['pic'] = this.restaurant.menu[key]['pic']
+          }
+        }
+      }
     })
     for (var key in this.restaurant['rating']){
       if (this.user['email'] === this.restaurant['rating'][key]['email']){
