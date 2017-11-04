@@ -32,8 +32,10 @@
     "@ionic-native/facebook": "^4.3.2",
     "@ionic-native/geolocation": "^4.3.2",
     "@ionic-native/google-maps": "^4.3.2",
+    "@ionic-native/push": "^4.3.3",
     "@ionic-native/splash-screen": "4.3.0",
     "@ionic-native/status-bar": "^4.3.0",
+    "@ionic/cloud-angular": "^0.12.0",
     "@ionic/storage": "2.0.1",
     "angularfire2": "^5.0.0-rc.3",
     "com.googlemaps.ios": "https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk",
@@ -60,6 +62,7 @@
     "ionic-plugin-keyboard": "^2.2.1",
     "ionic2-rating": "^1.2.2",
     "ionicons": "3.0.0",
+    "phonegap-plugin-push": "^2.1.0",
     "promise-polyfill": "^6.0.2",
     "properties-parser": "^0.3.1",
     "rxjs": "5.4.3",
@@ -112,6 +115,9 @@
       "cordova-plugin-facebook4": {
         "APP_ID": "145706659372910",
         "APP_NAME": "Bon-Appetit"
+      },
+      "phonegap-plugin-push": {
+        "FCM_VERSION": "11.0.1"
       }
     },
     "platforms": []

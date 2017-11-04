@@ -5,10 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule , } from 'ion
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
-
-// Firas \\
 import { Ionic2RatingModule } from 'ionic2-rating';
-// Firas \\
 
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -18,7 +15,6 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-/////import { IonicNativeModule } from 'ionic-native';
 
 import { RestMealsPage } from '../pages/rest-meals/rest-meals';
 import { RequestsPage } from '../pages/requests/requests';
@@ -31,7 +27,14 @@ import { MapPage } from '../pages/map/map';
 import { RestReviewsPage } from '../pages/rest-reviews/rest-reviews';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { FacebookPage } from '../pages/facebook/facebook';
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '68a0e532'
+  }
+};
 
 var firebaseConfig = {
   apiKey: "AIzaSyBnH6BJVQHmst0wH2in3G4ftWxG2-m5r34",
@@ -66,8 +69,8 @@ var firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    Ionic2RatingModule
-    
+    Ionic2RatingModule,
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -82,8 +85,7 @@ var firebaseConfig = {
     MapPage,
     RestReviewsPage,
     SignUpPage,
-    FacebookPage
-
+    FacebookPage,
   ],
   providers: [
     StatusBar,
@@ -91,10 +93,9 @@ var firebaseConfig = {
     AngularFireDatabase,
     GoogleMaps,
     Geolocation,
-
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Facebook
-
+    Facebook,
+    Push
   ]
 })
 export class AppModule {}

@@ -59,6 +59,22 @@ module.exports = [
     "clobbers": [
       "facebookConnectPlugin"
     ]
+  },
+  {
+    "id": "phonegap-plugin-push.PushNotification",
+    "file": "plugins/phonegap-plugin-push/www/push.js",
+    "pluginId": "phonegap-plugin-push",
+    "clobbers": [
+      "PushNotification"
+    ]
+  },
+  {
+    "id": "cordova-plugin-statusbar.statusbar",
+    "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+    "pluginId": "cordova-plugin-statusbar",
+    "clobbers": [
+      "window.StatusBar"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -73,7 +89,9 @@ module.exports.metadata =
   "cordova-plugin-geolocation": "2.4.3",
   "cordova-plugin-googlemaps": "1.4.5",
   "cordova-plugin-facebook4": "1.9.1",
-  "cordova-plugin-whitelist": "1.3.1"
+  "cordova-plugin-whitelist": "1.3.1",
+  "phonegap-plugin-push": "2.1.0",
+  "cordova-plugin-statusbar": "2.2.3"
 };
 // BOTTOM OF METADATA
 });
