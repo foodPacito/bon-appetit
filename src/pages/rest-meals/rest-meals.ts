@@ -27,16 +27,12 @@ export class RestMealsPage {
   selectedTime;
   obj;
   delevarClicked: boolean = false;
-  //randOrderNum
   rate;
   comment;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public db: AngularFireDatabase) { }
-  
-  // Firas
-
 
   ionViewDidLoad() {
     this.restaurant = this.navParams.get('rest');
@@ -47,6 +43,15 @@ export class RestMealsPage {
     //passig the list of available meals (available) to show them in html page
     this.db.list('/restaurants/'+ this.restaurant.name +'/available').valueChanges().subscribe(data=>{ 
       this.availList=data
+      //Firas
+      for (var i =  0; i < this.availList.length; i++){
+        for (var key in this.restaurant.menu){
+          if (this.availList[i]['name'] === this.restaurant.menu[key]['name']){
+            this.availList[i]['pic'] = this.restaurant.menu[key]['pic']
+          }
+        }
+      }
+      //Firas
     })
     for (var key in this.restaurant['rating']){
       if (this.user['email'] === this.restaurant['rating'][key]['email']){
@@ -148,7 +153,6 @@ export class RestMealsPage {
   
   // Firas
   rateRes(){
-    console.log(this.rate, this.comment)
     this.db.object('/restaurants/'+this.restaurant.name+'/rating/'+this.user.phone).set({
       email : this.user.email,
       rating: this.rate

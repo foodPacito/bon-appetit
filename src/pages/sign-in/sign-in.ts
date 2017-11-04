@@ -10,6 +10,7 @@ import { UserHomePage } from '../user-home/user-home';
 import { Md5 } from 'ts-md5/dist/md5';
 import { MapPage } from '../map/map';
 import { SignUpPage } from '../sign-up/sign-up';
+import { FacebookPage } from '../facebook/facebook';
 
 @Component({
   selector: 'page-sign-in',
@@ -35,19 +36,11 @@ export class SignInPage {
     private fb: Facebook,
     public menu: MenuController) {}
 
-    //  MarkerMap(){
-    //   this.navCtrl.push(MapPage);
-    //  }
-  
-  
   ionViewDidLoad() {
     this.db.list('/restaurants').valueChanges().subscribe( data => {
       if (this.restaurantsList.length === 0){
-        console.log(data)
-        console.log('=============================')
         for (var i = 0; i < data.length; i++){
           this.restaurantsList.push([data[i]['name'],data[i]['email']])
-          console.log(this.restaurantsList)
         }
       }
 
@@ -67,8 +60,6 @@ export class SignInPage {
       firebase.auth().signInWithCredential(fc).then(fs => {
         for (var i = 0; i < this.restaurantsList.length; i++){
           if (fs.email === this.restaurantsList[i][1]){
-            console.log('found it')
-            console.log(this.restaurantsList[i][0])
             this.restName = this.restaurantsList[i][0]
             this.navCtrl.setRoot(HomePage, {
               restName: this.restName
@@ -83,32 +74,47 @@ export class SignInPage {
             })
           }
         }
+        ///////// Firas \\\\\\\\\
+        this.navCtrl.setRoot(FacebookPage, {
+          fc: fc
+        })
+        //////////Firas\\\\\\\\\\
+
         
       }).catch(ferr => {
           alert ('firebase err')
         })
-    
-      console.log('Logged into Facebook!', res)
-      console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-      for (var key in res){
-        console.log (key + ":", res[key])
-      }
-    
-      console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-          
     })
     .catch(e => console.log('Error logging into Facebook', e));
       
   }
    
   emailSignIn(){
+    //////////Firas\\\\\\\\\\
+    if (!this.email){
+      let toast = this.toast.create({
+        message: 'You need to fill your email first',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      return
+    } else if (!this.password){
+      let toast = this.toast.create({
+        message: 'You need to fill your password first',
+        duration: 2000,
+        position: 'top'
+      });
+      toast.present();
+      return
+    }
+    //////////Firas\\\\\\\\\\
+
     this.angularFireAuth.auth.signInWithEmailAndPassword(this.email,this.password).then(signedInData => {
-      console.log(signedInData)
       this.navCtrl.setRoot(UserHomePage, {
         email: this.email
       });
     }).catch(err => {
-      console.log(err);
       this.toast.create({
         message: err.message,
         duration: 6000
