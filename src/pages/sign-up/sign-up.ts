@@ -1,6 +1,6 @@
 import { UserHomePage } from './../user-home/user-home';
 import { HomePage } from './../home/home';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, trigger, state, style, transition, animate, keyframes} from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController, MenuController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
@@ -13,6 +13,50 @@ import { FacebookPage } from '../facebook/facebook';
 @Component({
   selector: 'page-sign-up',
   templateUrl: 'sign-up.html',
+  animations: [
+    //For the logo
+    trigger('flyInBottomSlow', [
+      state('in', style({
+        transform: 'translate3d(0,0,0)'
+      })),
+      transition('void => *', [
+        style({transform: 'translate3d(0,2000px,0'}),
+        animate('1500ms ease-in-out')
+      ])
+    ]),
+    trigger('flyInBottomFast', [
+      state('in', style({
+        transform: 'translate3d(0,0,0)'
+      })),
+      transition('void => *', [
+        style({transform: 'translate3d(0,2000px,0)'}),
+        animate('700ms ease-in-out')
+      ])
+    ]),
+    //For the login form
+    trigger('bounceInBottom', [
+      state('in', style({
+        transform: 'translate3d(0,0,0)'
+      })),
+      transition('void => *', [
+        animate('1500ms 200ms ease-in', keyframes([
+          style({transform: 'translate3d(0,2000px,0)', offset: 0}),
+          style({transform: 'translate3d(0,-20px,0)', offset: 0.9}),
+          style({transform: 'translate3d(0,0,0)', offset: 1})
+        ]))
+      ])
+    ]),
+    //For login button
+    trigger('fadeIn', [
+      state('in', style({
+        opacity: 1
+      })),
+      transition('void => *', [
+        style({opacity: 0}),
+        animate('1000ms 2000ms ease-in')
+      ])
+    ])
+  ]
 })
 export class SignUpPage {
 
@@ -24,6 +68,12 @@ export class SignUpPage {
   password ;
   itemsRef;
   phone;
+  ///////////Siraj
+  logoState: any = "in";
+  cloudState: any = "in";
+  loginState: any = "in";
+  formState: any = "in";
+  ///////////////Siraj
 
   constructor(
     public navCtrl: NavController,
