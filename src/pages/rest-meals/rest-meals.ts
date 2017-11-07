@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 /**
@@ -27,45 +27,40 @@ export class RestMealsPage {
   selectedTime;
   obj;
   delevarClicked: boolean = false;
-  //randOrderNum
   rate;
   comment;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public db: AngularFireDatabase) { }
-  
-  // Firas
-
+    public db: AngularFireDatabase,
+    private toast: ToastController) { }
 
   ionViewDidLoad() {
     this.restaurant = this.navParams.get('rest');
     // Firas
     this.user = this.navParams.get('user');
     // Firas
-    // this.availList=Object.keys(this.restaurant.available);
-    //passig the list of available meals (available) to show them in html page
     this.db.list('/restaurants/'+ this.restaurant.name +'/available').valueChanges().subscribe(data=>{ 
-      this.availList=data
-    })
+      this.availList=data;
+      //Firas
+      for (var i =  0; i < this.availList.length; i++){
+        for (var key in this.restaurant.menu){
+          if (this.availList[i]['name'] === this.restaurant.menu[key]['name']){
+            this.availList[i]['pic'] = this.restaurant.menu[key]['pic'];
+          }
+        }
+      }
+      //Firas
+    });
     for (var key in this.restaurant['rating']){
       if (this.user['email'] === this.restaurant['rating'][key]['email']){
-        this.rate = this.restaurant['rating'][key]['rating']
+        this.rate = this.restaurant['rating'][key]['rating'];
       }
     }
     this.availList=Object.keys(this.restaurant.available);
-    //geting user information from (user-homepage)
-    // this.user = this.navParams.get('user')
-    console.log('----------------------------------')
-    // console.log(this.user)
-
-  
-    console.log('----------------------------------')
     this.db.list('/restaurants/'+ this.restaurant.name +'/orders').valueChanges().subscribe( res => {
-      console.log(res)
-    })
-    
-    // this.orderslist=Object.keys(this.restaurant.orders);
+      console.log(res);
+    });
   }
 
   handPickClick(){
@@ -80,58 +75,47 @@ export class RestMealsPage {
   //take the meal chosen from user ad pass it to selectmeals function
   public selectmeals(mealchosen){
     this.selectedmeal= mealchosen;
+    let toast = this.toast.create({
+      message: 'Your meal (' + mealchosen.name + ') have been chosen' ,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+    return;
   }
   
   handPick(){
-    // for(var i=0; i<100; i++){
-    //   let randOrderNum=Math.floor(Math.random()*1000);
-    //   }
-    this.sendtorest= this.orderslist
-    console.log(this.sendtorest)
-    const orderItem=this.db.list('/restaurants/'+this.restaurant.name+'/orders/')
+    this.sendtorest= this.orderslist;
+    const orderItem=this.db.list('/restaurants/'+this.restaurant.name+'/orders/');
     orderItem.push({time:this.selectedTime,
       phone: this.user.phone,
       name:this.user.name,
       meals :this.selectedmeal.name,
-      method: 'Hand pick'})
+      method: 'Hand pick'});
 
-  let newNum = this.restaurant.available[this.selectedmeal.name].quantity   - 1
+  let newNum = this.restaurant.available[this.selectedmeal.name].quantity   - 1;
 
   if (newNum === 0) {
     this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal.name).remove();
-
-    // this.db.object('/restaurants/'+this.restaurant.pic+'/available/'+this.selectedmeal).remove();
-
       } else {
     this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal.name).set({
       name: this.selectedmeal.name,
-      pic: this.selectedmeal.pic,
       quantity: newNum
-    })
+    });
 
-    this.navCtrl.pop()
-  }
-    // this.db.object('/restaurants/'+this.restName+'/available/'+name)
-    // const itemsRef = this.db.object('//');
-    // itemsRef.update( { orders: 'fffff' });
-    // itemsRef.push({ orders: 'dddddddddddddd' });
-    // this.sendtorest.push({
-    //   name:'hhhhhhhhhhhh'
-    // })
-  	// this.navCtrl.push(HandPickPage);
+    this.navCtrl.pop();
+      }
   }
   delivary(){
-    
-    // this.navCtrl.push(DelivaryPage);
-    const orderItem=this.db.list('/restaurants/'+this.restaurant.name+'/orders/')
+    const orderItem=this.db.list('/restaurants/'+this.restaurant.name+'/orders/');
     orderItem.push({
       phone: this.user.phone,
       name:this.user.name,
       meals :this.selectedmeal.name,
       method: 'Delivary',
-      address: this.address})
+      address: this.address});
 
-      let newNum = this.restaurant.available[this.selectedmeal.name].quantity   - 1
+      let newNum = this.restaurant.available[this.selectedmeal.name].quantity   - 1;
       
         if (newNum === 0) {
           this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal.name).remove();
@@ -140,25 +124,24 @@ export class RestMealsPage {
           this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal.name).set({
             name: this.selectedmeal.name,
             quantity: newNum
-          })
+          });
         }
 
-        this.navCtrl.pop()
+        this.navCtrl.pop();
   }
   
   // Firas
   rateRes(){
-    console.log(this.rate, this.comment)
     this.db.object('/restaurants/'+this.restaurant.name+'/rating/'+this.user.phone).set({
       email : this.user.email,
       rating: this.rate
-    })
+    });
     
     if (this.comment) {
     this.db.object('/restaurants/'+this.restaurant.name+'/reviews/'+this.user.phone).set({
       email : this.user.email,
       review: this.comment
-    })
+    });
   }
 
     this.comment = null;

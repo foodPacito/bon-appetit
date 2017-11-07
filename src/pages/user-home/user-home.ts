@@ -7,7 +7,6 @@ import { Storage } from '@ionic/storage';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { SignUpPage } from '../sign-up/sign-up';
 import firebase from 'firebase';
-import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 @Component({
   selector: 'page-user-home',
@@ -19,14 +18,14 @@ export class UserHomePage {
   email;
   user;
   rating;
-  raters
+  raters;
+  sort;
   
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public db: AngularFireDatabase,
-    public afa: AngularFireAuth,
-    private push: Push) {  }
+    public afa: AngularFireAuth) {  }
   
   ionViewWillEnter () {
     this.db.list('/restaurants').valueChanges().subscribe(res => {
@@ -36,49 +35,20 @@ export class UserHomePage {
     this.db.list('/Users').valueChanges().subscribe( data => {
       if (this.usersList.length === 0){
         for (var i = 0; i < data.length; i++){
-          this.usersList.push([data[i]['firstName'],data[i]['email'],data[i]['phone']])
+          this.usersList.push([data[i]['firstName'],data[i]['email'],data[i]['phone']]);
         }
       }
     this.email = this.navParams.get('email');
     for(var i = 0; i < this.usersList.length; i++) {      
       if (this.email === this.usersList[i][1]){
-        this.user = this.usersList[i]
+        this.user = this.usersList[i];
       }
     }
     })
   }
-  pushNot() {
-    this.push.hasPermission()
-    .then((res: any) => {
-      if (res.isEnabled) {
-        console.log('We have permission to send push notifications');
-      } else {
-        console.log('We do not have permission to send push notifications');
-      }
-    });
-    const options: PushOptions = {
-      android: {
-        sound: true,
-        vibrate: true,
-
-      },
-      ios: {
-        alert: 'true',
-        badge: true,
-        sound: 'true'
-      },
-      windows: {},
-      browser: {
-          pushServiceURL: 'http://push.api.phonegap.com/v1/push'
-      }
-   };
-   const pushObject: PushObject = this.push.init(options);
-   pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
-   pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
-   pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-  }
+ 
   signOut() {
-    this.afa.auth.signOut().then(res => this.navCtrl.setRoot(SignUpPage))
+    this.afa.auth.signOut().then(res => this.navCtrl.setRoot(SignUpPage));
   }
 
   goToMealsPage(rest,user) {
@@ -95,7 +65,7 @@ export class UserHomePage {
   goToMapPage(rest){
     this.navCtrl.push(MapPage, {
       rest: rest
-    })
+    });
   }
 
   getKeysNum (obj) {
@@ -103,20 +73,29 @@ export class UserHomePage {
   }
 
   getRating(name){
-    var total = 0
+    var total = 0;
 
     for (var i = 0; i < this.resList.length; i++){
       if (this.resList[i].name === name){
         for (var key in this.resList[i]['rating']){
-          total += this.resList[i]['rating'][key].rating
+          total += this.resList[i]['rating'][key].rating;
        }
-       this.rating = total/Object.keys(this.resList[i]['rating']).length
-       this.raters = Object.keys(this.resList[i]['rating']).length
+       this.rating = total/Object.keys(this.resList[i]['rating']).length;
+       this.raters = Object.keys(this.resList[i]['rating']).length;
       }
     }
     return this.rating.toFixed(1)
   }
 
+  sort1(){
+    if(this.sort === "Name"){
+      this.sortByName();
+    }
+    else if(this.sort === "Rating"){
+      this.sortByRating();
+    }
+    console.log(this.sort);
+  }
   sortByName(){
     this.resList.sort((a,b) => {
       var nameA = a.name.toUpperCase();
@@ -127,13 +106,13 @@ export class UserHomePage {
       if (nameA > nameB) {
         return 1;
     }
-  })
+  });
 } 
 
   sortByRating(){
     for(var i = 0; i < this.resList.length; i++){
-      this.resList[i]['rate'] = this.getRating(this.resList[i]['name'])
+      this.resList[i]['rate'] = this.getRating(this.resList[i]['name']);
     }
-    this.resList.sort((a,b) => b.rate - a.rate)
+    this.resList.sort((a,b) => b.rate - a.rate);
   }
 }
