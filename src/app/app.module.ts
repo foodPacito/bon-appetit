@@ -29,6 +29,8 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { FacebookPage } from '../pages/facebook/facebook';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { AnimatorModule } from 'css-animator';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -70,7 +72,8 @@ var firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     Ionic2RatingModule,
-    CloudModule.forRoot(cloudSettings)
+    CloudModule.forRoot(cloudSettings),
+    BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
