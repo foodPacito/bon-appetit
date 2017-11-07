@@ -1,131 +1,78 @@
 <ion-header>
-
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title *ngIf="restaurant">{{restaurant.name}}'s Meals</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-  <div *ngIf="restaurant">
-    <strong>
-      <h3>
-       Available Meals
-      </h3>
-    </strong>
-  </div>
-
- <!-- <ion-row no-padding>
-      <ion-col>
-        <button ion-button clear small color="danger" icon-start>
-          <ion-icon name='star'></ion-icon>
-          Favorite
-        </button>
-      </ion-col>
-      <ion-col text-center>
-        <button ion-button clear small color="danger" icon-start>
-          <ion-icon name='musical-notes'></ion-icon>
-          Listen
-        </button>
-      </ion-col>
-      <ion-col text-right>
-        <button ion-button clear small color="danger" icon-start>
-          <ion-icon name='share-alt'></ion-icon>
-          Share
-        </button>
-      </ion-col>
-    </ion-row> -->
-    
-
-
-
-    <ion-card  *ngFor="let meal of availList">
-        <img src={{meal.pic}} />
-        <ion-card-content>
-          <ion-card-title >
-           {{meal.name}}
-          </ion-card-title>
-            <button  round ion-button  (click)="selectmeals(meal)">add</button>
-        </ion-card-content>
-      </ion-card>
-      
-
-
-
-  <!--
-     <ion-card  *ngFor="let meal of availList">
-      <img src={{meal.pic}}/>
-      <ion-card-content>
-        <ion-card-title (click)="selectmeals(meal)" >
-            
-         {{meal.name}}
-          </ion-card-title>
-        <p>
-          something about meal
-        </p>
-      </ion-card-content>
-    </ion-card> -->
-    
-
-
-
-  <!-- <div style="margin-bottom:30px">
-    <ion-item >
-      <ion-label>select your meal</ion-label>
-      <ion-select interface="popover" [(ngModel)]="selectedmeal">
-        <ion-option value="{{meal}}" *ngFor="let meal of availList" >{{meal}}</ion-option>
-      </ion-select>
-    </ion-item>
-  </div> -->
-  <div>
-    <h5 text-center style="margin-bottom:15px">How do you want to take your meal </h5>
-    <button round ion-button (click)="handPickClick()">handPick</button>
-  <button  round ion-button (click)="delivaryClick()">Delivary</button>
-  <div *ngIf="buttonClicked"  >
-      
-      <ion-item>
-          <ion-label>How much time do you need to arraive?</ion-label>
-          <ion-select interface="popover" [(ngModel)]="selectedTime">
-            <ion-option value="5 minute" >5 minute</ion-option>
-            <ion-option value="10 minute" >10 minute</ion-option>
-            <ion-option value="15 minute" >15 minute</ion-option>
-            <ion-option value="20 minute" >20 minute</ion-option>
-            <ion-option value="25 minute" >25 minute</ion-option>
-            <ion-option value="30 minute" >30 minute</ion-option>
-          </ion-select>
-        </ion-item>
+  
+    <ion-navbar color="dark">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title *ngIf="restaurant">{{restaurant.name}}'s Meals</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content style="  background-color: #5e3958" padding>
+    <div *ngIf="restaurant">
+      <strong>
+        <h2 style=" padding-left: 200px; padding-bottom: 20px; color:#ffef96">
+         Available Meals
+        </h2>
+      </strong>
     </div>
-  <div *ngIf="delevarClicked" >
-     <ion-input placeholder="Text Input" type="text" [(ngModel)] = "address"></ion-input>
+  
+      <ion-card  style="background-color: #5e3958" *ngFor="let meal of availList">
+          <img src={{meal.pic}} />
+          <ion-card-content >
+            <ion-card-title style="color:#ffef96" >
+             {{meal.name}}
+             <button  round ion-button class="bgcolor" (click)="selectmeals(meal)">add</button>
+            </ion-card-title>
+              
+          </ion-card-content>
+        </ion-card>
+        
+    <div>
+      <h5 text-center style="margin-bottom:15px">How do you want to take your meal </h5>
+      <button round ion-button class="bgcolor" (click)="handPickClick()">handPick</button>
+    <button  round ion-button class="bgcolor" (click)="delivaryClick()">Delivary</button>
+    <div *ngIf="buttonClicked"  >
+        
+        <ion-item>
+            <ion-label>How much time do you need to arraive?</ion-label>
+            <ion-select interface="popover" [(ngModel)]="selectedTime">
+              <ion-option value="5 minute" >5 minute</ion-option>
+              <ion-option value="10 minute" >10 minute</ion-option>
+              <ion-option value="15 minute" >15 minute</ion-option>
+              <ion-option value="20 minute" >20 minute</ion-option>
+              <ion-option value="25 minute" >25 minute</ion-option>
+              <ion-option value="30 minute" >30 minute</ion-option>
+            </ion-select>
+          </ion-item>
+      </div>
+    <div *ngIf="delevarClicked" >
+       <ion-input placeholder="Text Input" type="text" [(ngModel)] = "address"></ion-input>
+    </div>
+  <button block round ion-button class="bgcolor" *ngIf ='buttonClicked'(click)="handPick()">order now</button><br>
+  <button block round ion-button class="bgcolor" *ngIf = "delevarClicked" (click)="delivary()">order now</button><br>
+  
   </div>
-<button block round ion-button *ngIf ='buttonClicked'(click)="handPick()">order now</button><br>
-<button block round ion-button *ngIf = "delevarClicked" (click)="delivary()">order now</button><br>
-
-</div>
-
-<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\ Firas /////////////////////////// -->
-
-<hr/>
-<h4>Please give us your feedback</h4>
-
-<h5>Rating</h5>
-
-<rating [(ngModel)]="rate" 
-  readOnly="false"
-  max="5"
-  emptyStarIconName="star-outline"
-  halfStarIconName="star-half"
-  starIconName="star"
-  nullable="false"></rating>
-  <ion-label color="primary">Add Comment</ion-label>
-  <ion-input placeholder="Text Input" type="text" aria-placeholder="Your comment" [(ngModel)] = "comment"></ion-input>
-<button ion-button round (click)="rateRes()">Submit</button>
-
-<!-- /////////////////////////// Firas \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-
-</ion-content>
-    
+  
+  <hr/>
+  <h4>Please give us your feedback</h4>
+  
+  <h5>Rating</h5>
+  
+  <rating [(ngModel)]="rate" 
+    readOnly="false"
+    max="5"
+    emptyStarIconName="star-outline"
+    halfStarIconName="star-half"
+    starIconName="star"
+    nullable="false"></rating>
+    <ion-label >Add Comment</ion-label>
+    <ion-input  placeholder="Text Input" type="text" aria-placeholder="Your comment" [(ngModel)] = "comment"></ion-input>
+  <button ion-button round class="bgcolor" (click)="rateRes()">Submit</button>
+  
+  <!-- /////////////////////////// Firas \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+  
+  </ion-content>
+      
