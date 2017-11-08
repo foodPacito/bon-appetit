@@ -2,4 +2,18 @@ page-home {
   .title{
       font-family: Courier New;
   }
+  .icondir{ 
+  width: 260px; 
+   border: 2px solid #e7e2a7;
+   border-radius: 70%;
+   box-shadow: 0 0 5px gray;
+   margin: auto;
+   display: block;
+  }
+  .butprop{
+    background-color: #e7e2a7;
+    color:#5e3958;
+    margin: auto;
+    display: block;
+  }
 }
