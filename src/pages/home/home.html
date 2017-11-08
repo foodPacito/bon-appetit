@@ -1,4 +1,4 @@
-<ion-header>
+ <ion-header>
   <ion-navbar color="dark">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -9,22 +9,19 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h1 class="title">{{restInfo.name}}</h1>
+<ion-content  style="background-color:#853079" padding>
+  <h1 class="title" style=" text-align: center; padding-bottom: 20px;
+  color:#f4e1d2;">{{restInfo.name}}</h1>
   <h3 class="title">{{restInfo.phone}}</h3>
   You have a <strong>{{avRating}}</strong> rating out of <strong>5</strong>
   <br/>
-  from <strong>{{raters}}</strong> person(s)
-  <img src={{restInfo.pic}}/>
-<ion-list>
+  from <strong >{{raters}}</strong> person(s)
+  <img class="icondir" src={{restInfo.pic}}/>
+<ion-list style="padding-top : 40px;" >
   
-  <button ion-button (click)= "mealPage()">Meals </button>
-  <button ion-button (click)= "reqPage()">Request </button>
-  <button ion-button (click)= "revPage()">Reviews </button>
-  
-  
+  <button round  class="butprop" ion-button (click)= "mealPage()">Meals </button><br>
+  <button round  class="butprop" ion-button (click)= "reqPage()">Request </button><br>
+  <button round  class="butprop" ion-button (click)= "revPage()">Reviews </button><br>
+    
 </ion-list>
-
-<button ion-button (click)="googleLogout()">Log Out </button>
-
 </ion-content>

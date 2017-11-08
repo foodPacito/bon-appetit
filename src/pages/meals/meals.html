@@ -7,28 +7,31 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content style="background-color:#853079" padding>
   
-<ion-item>
+<ion-item style="background-color: #6e1f64" >
   <ion-label>Meal</ion-label>
   <ion-select interface="popover" [(ngModel)]="Type" >
     <ion-option *ngFor = "let meal of meals" value="{{meal.name}}">{{meal.name}}</ion-option>
   </ion-select>
 </ion-item>
 
-<ion-item>
+<ion-item style="background-color: #6e1f64" >
     <ion-label>Quantity</ion-label>
     <ion-select interface="popover" [(ngModel)]="Num" >
       <ion-option *ngFor = "let num of nums" value="{{num}}">{{num}}</ion-option>
     </ion-select>
   </ion-item>
+<div style="padding-bottom: 15px; padding-top:15px">
+<button round ion-button class="butprop" (click) ="addMeal(Type, Num)">Add</button>
+</div>
+<div style="padding-bottom: 15px;">
+<button round ion-button class="butprop" (click) ="removeMeal(Type, Num)">Remove</button>
+</div>
 
-<button ion-button (click) ="addMeal(Type, Num)">Add</button>
-<button ion-button (click) ="removeMeal(Type, Num)">Remove</button>
-
-<ion-list *ngFor= "let Meal of show">
-    <ion-item class="view">
-      Meal: <strong>{{Meal.name}}</strong> 
+<ion-list style="background-color: #6e1f64" *ngFor= "let Meal of show">
+    <ion-item class="view" style="background-color: #6e1f64">
+      <strong> Meal: </strong> <strong>{{Meal.name}}</strong> <br>
       for <strong>{{Meal.quantity}}</strong> person(s).
     </ion-item>
   </ion-list>
