@@ -133,7 +133,7 @@ export class SignUpPage {
         position: 'top'
       });
       toast.present();
-      return
+      return;
     } else if (!this.phone){
       let toast = this.toast.create({
         message: 'You need to fill your phone first',
@@ -141,7 +141,7 @@ export class SignUpPage {
         position: 'top'
       });
       toast.present();
-      return
+      return;
     }
         // console.log(this.password)
         this.angularFireAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(signUpData=>{
@@ -149,8 +149,9 @@ export class SignUpPage {
           this.itemsRef.set(  
             { firstName: this.name,
               email: this.email,
-              phone: this.phone
-            })
+              phone: this.phone,
+              new: true
+            });
             
             this.navCtrl.setRoot(UserHomePage, {
               email: this.email

@@ -57,7 +57,9 @@ export class RestMealsPage {
         this.rate = this.restaurant['rating'][key]['rating'];
       }
     }
+    if (this.restaurant.available){
     this.availList=Object.keys(this.restaurant.available);
+    }
     this.db.list('/restaurants/'+ this.restaurant.name +'/orders').valueChanges().subscribe( res => {
       console.log(res);
     });
@@ -103,8 +105,9 @@ export class RestMealsPage {
       quantity: newNum
     });
 
-    this.navCtrl.pop();
       }
+      this.navCtrl.pop();
+      
   }
   delivary(){
     const orderItem=this.db.list('/restaurants/'+this.restaurant.name+'/orders/');
