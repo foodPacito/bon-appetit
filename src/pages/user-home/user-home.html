@@ -53,13 +53,12 @@
           <ion-thumbnail  item-start>
             <img style="width:100px; height:100px" (click)="goToMealsPage(rest,user)" src={{rest.pic}}/>
           </ion-thumbnail>
+          <button ion-fab class="butcolor" item-end (click)="goToMapPage(rest)">
+              <ion-icon  name="pin"> </ion-icon>
+             </button>
             <div (click)="goToMealsPage(rest,user)" class="card-title">{{rest.name}}</div>
-            <div class="textin" *ngIf="rest.available">{{getKeysNum(rest.available)}} items</div>
-            <div>{{getRating(rest.name)}} out of 5</div>
-            <button ion-fab class="butcolor" item-end (click)="goToMapPage(rest)">
-             <ion-icon name="pin"> </ion-icon>
-            </button> 
-        <!-- </div> -->
+            <div class="textin" *ngIf="rest.available" >{{getKeysNum(rest.available)}} items</div>
+            <div  class="texton">{{getRating(rest.name)}} out of 5</div>
         </ion-item>
       
       </ion-list>

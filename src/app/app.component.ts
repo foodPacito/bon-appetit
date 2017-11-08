@@ -10,7 +10,7 @@ import firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { SignInPage } from '../pages/sign-in/sign-in';
-
+import {AboutPage} from'../pages/about/about';
 @Component({
   templateUrl: 'app.html'  
 })
@@ -46,10 +46,19 @@ export class MyApp {
   }
 
   signOut() {
-    this.angularFireAuth.auth.signOut()
+    this.angularFireAuth.auth.signOut();
     this.presentLoadingCrescent();
     this.nav.setRoot(SignInPage);
     this.menu.close();
   }
-
+  aboutUs() {
+    this.menu.close();
+    this.nav.push(AboutPage);
+  }
+  gotosignup(){
+    this.menu.close();
+    this.nav.setRoot(SignUpPage);
+  }
 }
+
+

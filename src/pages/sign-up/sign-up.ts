@@ -12,7 +12,7 @@ import { FacebookPage } from '../facebook/facebook';
 
 @Component({
   selector: 'page-sign-up',
-  templateUrl: 'sign-up.html'
+  templateUrl: 'sign-up.html',
 })
 export class SignUpPage {
 
