@@ -8,11 +8,35 @@
     </ion-navbar>
   
   </ion-header>
-  
-  <ion-content style="background-color:#853079" padding class="card-background-page outer-content">
-    <div >
-        <img class="icondir"
-        src="https://images.vexels.com/media/users/3/128045/isolated/preview/e8fb0048acad6eb725295d4d77570085-heart-for-love-food-svg-by-vexels.png"/>
+    <ion-content style="background-color:#5e3958" padding class="card-background-page outer-content">
+    <div *ngIf = 'isNew' class="tutorial-page">
+        <ion-slides pager>
+            <ion-slide *ngFor="let slide of slides">
+              <ion-toolbar>
+                <ion-buttons end>
+                  <button ion-button color="primary" (click) = "old()">Skip</button>
+                </ion-buttons>
+              </ion-toolbar>
+              <img [src]="slide.image" class="slide-image"/>
+              <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+              <p [innerHTML]="slide.description"></p>
+            </ion-slide>
+            <ion-slide>
+              <ion-toolbar>
+              </ion-toolbar>
+              <img src="assets/img/ica-slidebox-img-4.png" class="slide-image"/>
+              <h2 class="slide-title">Ready to Play?</h2>
+              <button ion-button large clear icon-end color="primary" (click)="old()">
+                Continue
+                <ion-icon name="arrow-forward"></ion-icon>
+              </button>
+            </ion-slide>
+          </ion-slides>
+    </div>
+
+    <div *ngIf = '!isNew'>
+        <img 
+        src="http://i.ndtvimg.com/i/2015-09/chilli-chicken-625_625x350_41441399214.jpg"/>
         
     <ion-item class="bord" style="width: 300px; background-color:#6e1f64 ;margin-bottom: 5px;" >
       <ion-label  >Sort By</ion-label>  
@@ -30,8 +54,8 @@
             <img style="width:100px; height:100px" (click)="goToMealsPage(rest,user)" src={{rest.pic}}/>
           </ion-thumbnail>
             <div (click)="goToMealsPage(rest,user)" class="card-title">{{rest.name}}</div>
-            <div class="textin" *ngIf="rest.available" >{{getKeysNum(rest.available)}} items</div>
-            <div class="textin">{{getRating(rest.name)}} out of 5</div>
+            <div class="textin" *ngIf="rest.available">{{getKeysNum(rest.available)}} items</div>
+            <div>{{getRating(rest.name)}} out of 5</div>
             <button ion-fab class="butcolor" item-end (click)="goToMapPage(rest)">
              <ion-icon name="pin"> </ion-icon>
             </button> 

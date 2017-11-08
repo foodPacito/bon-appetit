@@ -20,6 +20,29 @@ export class UserHomePage {
   rating;
   raters;
   sort;
+  isNew;
+  slides = [
+    {
+      title: "Welcome to the Docs!",
+      description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic.",
+      image: "https://i.imgur.com/61v15nH.jpg",
+    },
+    {
+      title: "What is Ionic?",
+      description: "<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.",
+      image: "https://i.imgur.com/MohQa6R.jpg",
+    },
+    {
+      title: "What is Ionic Cloud?",
+      description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
+      image: "https://i.imgur.com/F6haW7S.jpg",
+    },
+    {
+      title: "What is Ionic Cloud?",
+      description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
+      image: "https://i.imgur.com/LDLEPZl.jpg",
+    }
+  ];
   
   constructor(
     public navCtrl: NavController,
@@ -35,13 +58,14 @@ export class UserHomePage {
     this.db.list('/Users').valueChanges().subscribe( data => {
       if (this.usersList.length === 0){
         for (var i = 0; i < data.length; i++){
-          this.usersList.push([data[i]['firstName'],data[i]['email'],data[i]['phone']]);
+          this.usersList.push([data[i]['firstName'],data[i]['email'],data[i]['phone'],data[i]['new']]);
         }
       }
     this.email = this.navParams.get('email');
     for(var i = 0; i < this.usersList.length; i++) {      
       if (this.email === this.usersList[i][1]){
         this.user = this.usersList[i];
+        this.isNew = this.user[3]
       }
     }
     })
@@ -85,6 +109,16 @@ export class UserHomePage {
       }
     }
     return this.rating.toFixed(1)
+  }
+
+  old(){
+    this.db.object('/Users/'+ this.user[2]).set({
+      firstName: this.user[0],
+      email: this.user[1],
+      phone: this.user[2],
+      new: false
+    })
+    this.isNew = false;
   }
 
   sort1(){
