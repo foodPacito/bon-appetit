@@ -5,7 +5,7 @@
   }
   .card-title {
     position: absolute;
-    top: 25%;
+    top: 10%;
     font-size: 1.5em;
     width: 100%;
     font-weight: bold;
@@ -15,19 +15,28 @@
   .card-subtitle {
     font-size: 1.0em;
     position: absolute;
-    top: 52%;
+    top: 42%;
     width: 100%;
     color: #fff;
     text-shadow: 0 0 3px rgb(0, 0, 0), 0 0 5px rgb(0, 0, 0);;
   }
   .textin{
-    padding-top: 50px;
+    padding-top: 60px;
     color:#e7e2a7;
-  }    
+    position: absolute;
+    top: 0%;
+  }   
+  .texton{
+    padding-top: 60px;
+    color:#e7e2a7;
+    position: absolute;
+    top: 20%;
+  } 
+
   .butcolor{
     background-color : #000;
-    width : 16%;
-    height: 22%
+    width : 18%;
+    height: 28%
   }
   .navbg{
     background-color : #000000
@@ -35,6 +44,7 @@
   .bord{
     border: 1px solid rgb(255, 255, 255);
     border-radius: 12px;
+    margin: auto;
   }
   .textcolor{
     color:#e7e2a7;
@@ -48,4 +58,5 @@
     border: 1px solid #6e1f64;
     border-radius: 12px;
   }
+
 }

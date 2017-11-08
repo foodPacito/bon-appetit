@@ -7,13 +7,13 @@
 </ion-header>
 
 <ion-content padding overflow-scroll="false">
-  <div padding [@flyInBottomFast]="cloudState" id="cloud-layer">
+  <div padding id="cloud-layer">
     <ion-row>
       <ion-col>
-        <img [@flyInBottomSlow]="logoState" src="https://images.vexels.com/media/users/3/128045/isolated/preview/e8fb0048acad6eb725295d4d77570085-heart-for-love-food-svg-by-vexels.png"/>
+        <img src="https://images.vexels.com/media/users/3/128045/isolated/preview/e8fb0048acad6eb725295d4d77570085-heart-for-love-food-svg-by-vexels.png"/>
       </ion-col>
     </ion-row>
-    <ion-list [@bounceInBottom]="formState" inlist>
+    <ion-list inlist>
       <ion-item>
         <ion-label stacked>User Name</ion-label>
         <ion-input [(ngModel)]="name" type="text" ></ion-input>
@@ -36,12 +36,12 @@
       
     </ion-list>      
         
-    <button ion-button block round [@fadeIn]="loginState" (click)='emailSignUp()' style="margin-bottom:1em; font-family:Arial, Helvetica, sans-serif; font-size:110%;font-weight: bold;">Sign Up</button>
+    <button ion-button class="butprop" block round (click)='emailSignUp()' style="margin-bottom:1em; font-family:Arial, Helvetica, sans-serif; font-size:110%;font-weight: bold;">Sign Up</button>
     
     <div style="text-align: center; margin-bottom:3em; font-family:Arial, Helvetica, sans-serif;">
-      <button ion-button round block [@fadeIn]="loginState" (click)='fbLogin()'><ion-icon name="logo-facebook" style="font-size: 140%;"><span style="margin-left:1em; font-weight: bold; font-family:Arial, Helvetica, sans-serif; font-size: 90%;">Facebook Sign up</span></ion-icon></button>
+      <button ion-button class="butprop" round block (click)='fbLogin()'><ion-icon name="logo-facebook" style="font-size: 140%;"><span style="margin-left:1em; font-weight: bold; font-family:Arial, Helvetica, sans-serif; font-size: 90%;">Facebook Sign up</span></ion-icon></button>
     </div>
-
+    
     <div>
       <p>if you are already a user please <a style="font-weight: bold; font-family:Arial, Helvetica, sans-serif; font-size:120%" (click) = "goToLogIn()">Sign in</a></p>
     </div>

@@ -9,15 +9,15 @@
 <ion-content style="background-color:#853079" padding>
   <ion-list *ngFor = "let review of reviews">
     <ion-item style="background-color:#6e1f64; border: 0.1px solid #6e1f64; border-radius: 20px;">
-      <ion-item style="background-color:#6e1f64;color:#f4e1d2;">
+      <ion-item style="background-color:#6e1f64;color:#e7e2a7;">
         {{review['email']}}
       </ion-item>
-      <hr style="background-color:#f4e1d2; ">
-      <ion-item style="background-color:#6e1f64;color:#f4e1d2;">
-        {{review['text']}}
+      <hr style="background-color:#e7e2a7; ">
+      <ion-item style="background-color:#6e1f64;color:#e7e2a7;">
+          <strong>commint : </strong>{{review['text']}}
       </ion-item>
-      <ion-item style="background-color:#6e1f64;color:#f4e1d2;">
-        rated you {{review['rating']}} out of 5.
+      <ion-item style="background-color:#6e1f64;color:#e7e2a7;">
+        <strong>rating : </strong>{{review['rating']}} out of 5.
       </ion-item>
 </ion-item>
 </ion-list>

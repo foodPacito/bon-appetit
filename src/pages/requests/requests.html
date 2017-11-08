@@ -9,21 +9,21 @@
 <ion-content  style="background-color:#853079" padding>
     <ion-list  *ngFor = "let order of orders">
       <ion-item  style="background-color:#6e1f64; border: 0.1px solid #6e1f64; border-radius: 20px;">  
-        <ion-item style="background-color:#6e1f64;color:#f4e1d2;">
+        <ion-item style="background-color:#6e1f64;color:#e7e2a7;">
             <h2 style="text-align: center;"> <strong>{{order['name']}}</strong></h2>
         </ion-item >
-        <hr style="background-color:#f4e1d2; ">
-        <ion-item style="background-color:#6e1f64;color:#f4e1d2;">
+        <hr style="background-color:#e7e2a7; ">
+        <ion-item style="background-color:#6e1f64;color:#e7e2a7;">
             <strong>Hhone Number : </strong> {{order['phone']}}
         </ion-item>
         
-        <ion-item style="background-color:#6e1f64;color:#f4e1d2;">
+        <ion-item style="background-color:#6e1f64;color:#e7e2a7;">
             <strong>How Ordered : </strong> {{order['method']}}
         </ion-item>
-        <ion-item style="background-color:#6e1f64;color:#f4e1d2;" *ngIf="order['time']">
+        <ion-item style="background-color:#6e1f64;color:#e7e2a7;" *ngIf="order['time']">
             <strong>Estimated time to arrive : </strong> {{order['time']}}
         </ion-item>
-        <ion-item style="background-color:#6e1f64;color:#f4e1d2;" *ngIf="order['address']">
+        <ion-item style="background-color:#6e1f64;color:#e7e2a7;" *ngIf="order['address']">
           address {{order.address}}
         </ion-item>
       </ion-item >

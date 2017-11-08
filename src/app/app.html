@@ -1,20 +1,29 @@
 <ion-menu [content]="myContent" id="menu">
   <ion-header>
-    <ion-toolbar color="dark">
-      <ion-title style="color:#e7e2a7">Menu</ion-title>
-    </ion-toolbar>
+      <ion-navbar color="dark" >
+          <button  ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        </ion-navbar>
+      
   </ion-header>
 
   <ion-content>
     <ion-list>
-      <button ion-item>
-        Home
+      <button ion-item (click)="gotosignup()">
+        <h2 style="font-weight:bold">Home</h2>
       </button>
-      <button ion-item (click)="signOut()">
-        Sign Out
+      <button ion-item (click)="aboutUs()">
+        <h2 style="font-weight:bold">About</h2>
       </button>
+      
     </ion-list>
   </ion-content>
+  <ion-footer> 
+    <button ion-item (click)="signOut()">
+      <h2 style="font-weight:bold">Sign Out</h2> 
+    </button>
+  </ion-footer>
 </ion-menu>
 
 <ion-nav #myContent [root]="rootPage"></ion-nav>

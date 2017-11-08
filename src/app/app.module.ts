@@ -19,6 +19,7 @@ import { HomePage } from '../pages/home/home';
 import { RestMealsPage } from '../pages/rest-meals/rest-meals';
 import { RequestsPage } from '../pages/requests/requests';
 import { MealsPage } from '../pages/meals/meals';
+import { AboutPage } from '../pages/about/about';
 
 import { DelivaryPage } from '../pages/delivary/delivary';
 import { UserHomePage } from '../pages/user-home/user-home';
@@ -29,7 +30,7 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { FacebookPage } from '../pages/facebook/facebook';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { AnimatorModule } from 'css-animator';
 
 const cloudSettings: CloudSettings = {
@@ -61,7 +62,8 @@ var firebaseConfig = {
     MapPage,
     RestReviewsPage,
     SignUpPage,
-    FacebookPage
+    FacebookPage,
+    AboutPage
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,7 @@ var firebaseConfig = {
     AngularFireAuthModule,
     Ionic2RatingModule,
     CloudModule.forRoot(cloudSettings),
-    BrowserAnimationsModule
+    // BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -89,6 +91,7 @@ var firebaseConfig = {
     RestReviewsPage,
     SignUpPage,
     FacebookPage,
+    AboutPage
   ],
   providers: [
     StatusBar,
