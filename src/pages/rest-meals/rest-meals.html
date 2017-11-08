@@ -10,19 +10,20 @@
   </ion-header>
   
   
-  <ion-content style="  background-color: #5e3958" padding>
+  <ion-content style="  background-color: #833b79" padding>
     <div *ngIf="restaurant">
       <strong>
-        <h2 style=" padding-left: 200px; padding-bottom: 20px; color:#ffef96">
+        <h1 style=" text-align: center; padding-bottom: 20px;
+        color:#f4e1d2;">
          Available Meals
-        </h2>
+        </h1>
       </strong>
     </div>
   
-      <ion-card  style="background-color: #5e3958" *ngFor="let meal of availList">
+      <ion-card  style="background-color: #6e1f64" *ngFor="let meal of availList">
           <img src={{meal.pic}} />
           <ion-card-content >
-            <ion-card-title style="color:#ffef96" >
+            <ion-card-title style="color:#f4e1d2" >
              {{meal.name}}
              <button  round ion-button class="bgcolor" (click)="selectmeals(meal)">add</button>
             </ion-card-title>
@@ -69,7 +70,7 @@
     starIconName="star"
     nullable="false"></rating>
     <ion-label >Add Comment</ion-label>
-    <ion-input  placeholder="Text Input" type="text" aria-placeholder="Your comment" [(ngModel)] = "comment"></ion-input>
+    <ion-input placeholder="Text Input" type="text" aria-placeholder="Your comment" [(ngModel)] = "comment"></ion-input>
   <button ion-button round class="bgcolor" (click)="rateRes()">Submit</button>
   
   <!-- /////////////////////////// Firas \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
