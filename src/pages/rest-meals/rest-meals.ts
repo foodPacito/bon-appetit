@@ -95,6 +95,8 @@ export class RestMealsPage {
       meals :this.selectedmeal.name,
       method: 'Hand pick'});
 
+      console.log(this.restaurant.available)
+      console.log(this.selectedmeal.name)
   let newNum = this.restaurant.available[this.selectedmeal.name].quantity   - 1;
 
   if (newNum === 0) {
@@ -106,6 +108,12 @@ export class RestMealsPage {
     });
 
       }
+      let toast = this.toast.create({
+        message: 'Your order have been submitted' ,
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
       this.navCtrl.pop();
       
   }
@@ -118,7 +126,7 @@ export class RestMealsPage {
       method: 'Delivary',
       address: this.address});
 
-      let newNum = this.restaurant.available[this.selectedmeal.name].quantity   - 1;
+      let newNum = this.restaurant.available[this.selectedmeal.name].quantity - 1;
       
         if (newNum === 0) {
           this.db.object('/restaurants/'+this.restaurant.name+'/available/'+this.selectedmeal.name).remove();
@@ -129,6 +137,12 @@ export class RestMealsPage {
             quantity: newNum
           });
         }
+        let toast = this.toast.create({
+          message: 'Your order have been submitted' ,
+          duration: 3000,
+          position: 'top'
+        });
+        toast.present();
 
         this.navCtrl.pop();
   }
@@ -148,6 +162,12 @@ export class RestMealsPage {
   }
 
     this.comment = null;
+    let toast = this.toast.create({
+      message: 'Your review have been submitted' ,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
 
     }
   // Firas
