@@ -36,14 +36,15 @@ export class FacebookPage {
         position: 'top'
       });
       toast.present();
-      return
+      return;
     }
 
     firebase.auth().signInWithCredential(this.fc).then(fs => {
       this.db.object('Users/' + this.phone).set({
         firstName: fs.displayName,
         email: fs.email,
-        phone: this.phone
+        phone: this.phone,
+        new: true
       })
 
       this.navCtrl.setRoot(UserHomePage, {
