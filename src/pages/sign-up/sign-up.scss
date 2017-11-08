@@ -1,13 +1,13 @@
 page-sign-up {
 
   .scroll-content {
-    background-color: #5e3958;
+    background-color: #853079;
     display: flex;
     flex-direction: column;
   }
 
   .signInButton {
-    color: #5e3958;
+    color: #c48bbb;
     background-color: #ffef96;
     width: 80%;
   }
@@ -53,6 +53,10 @@ page-sign-up {
     font-size: 0.9em;
     border: 1px solid #fff;
     background-color: #39acdc;
+  }
+  .butprop{
+    background-color: #e7e2a7;
+        color:#5e3958;
   }
 
 }

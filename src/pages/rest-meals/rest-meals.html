@@ -10,19 +10,20 @@
   </ion-header>
   
   
-  <ion-content style="  background-color: #5e3958" padding>
+  <ion-content style="  background-color: #833b79" padding>
     <div *ngIf="restaurant">
       <strong>
-        <h2 style=" padding-left: 200px; padding-bottom: 20px; color:#ffef96">
+        <h1 style=" text-align: center; padding-bottom: 20px;
+        color:#e7e2a7;">
          Available Meals
-        </h2>
+        </h1>
       </strong>
     </div>
   
-      <ion-card  style="background-color: #5e3958" *ngFor="let meal of availList">
+      <ion-card  style="background-color: #6e1f64" *ngFor="let meal of availList">
           <img src={{meal.pic}} />
           <ion-card-content >
-            <ion-card-title style="color:#ffef96" >
+            <ion-card-title style="color:#e7e2a7" >
              {{meal.name}}
              <button  round ion-button class="bgcolor" (click)="selectmeals(meal)">add</button>
             </ion-card-title>
@@ -30,14 +31,16 @@
           </ion-card-content>
         </ion-card>
         
-    <div>
+    <div >
       <h5 text-center style="margin-bottom:15px">How do you want to take your meal </h5>
+      <div style="padding-bottom:10px">
       <button round ion-button class="bgcolor" (click)="handPickClick()">handPick</button>
     <button  round ion-button class="bgcolor" (click)="delivaryClick()">Delivary</button>
+   </div>
     <div *ngIf="buttonClicked"  >
         
-        <ion-item>
-            <ion-label>How much time do you need to arraive?</ion-label>
+        <ion-item style="background-color: #6e1f64;">
+            <ion-label >How much time do you need to arraive?</ion-label>
             <ion-select interface="popover" [(ngModel)]="selectedTime">
               <ion-option value="5 minute" >5 minute</ion-option>
               <ion-option value="10 minute" >10 minute</ion-option>
@@ -53,7 +56,6 @@
     </div>
   <button block round ion-button class="bgcolor" *ngIf ='buttonClicked'(click)="handPick()">order now</button><br>
   <button block round ion-button class="bgcolor" *ngIf = "delevarClicked" (click)="delivary()">order now</button><br>
-  
   </div>
   
   <hr/>
@@ -69,7 +71,7 @@
     starIconName="star"
     nullable="false"></rating>
     <ion-label >Add Comment</ion-label>
-    <ion-input  placeholder="Text Input" type="text" aria-placeholder="Your comment" [(ngModel)] = "comment"></ion-input>
+    <ion-input placeholder="Text Input" type="text" aria-placeholder="Your comment" [(ngModel)] = "comment"></ion-input>
   <button ion-button round class="bgcolor" (click)="rateRes()">Submit</button>
   
   <!-- /////////////////////////// Firas \\\\\\\\\\\\\\\\\\\\\\\\\\\ -->

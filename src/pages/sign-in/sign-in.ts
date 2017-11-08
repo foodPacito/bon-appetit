@@ -14,7 +14,7 @@ import { FacebookPage } from '../facebook/facebook';
 
 @Component({
   selector: 'page-sign-in',
-  templateUrl: 'sign-in.html'
+  templateUrl: 'sign-in.html',
 })
 
 export class SignInPage {
