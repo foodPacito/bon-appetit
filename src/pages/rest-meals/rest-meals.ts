@@ -95,6 +95,12 @@ export class RestMealsPage {
           quantity: newNum
         });
       }
+      let toast = this.toast.create({
+        message: 'Your order have been submitted' ,
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
       this.navCtrl.pop();
   }
 
@@ -116,6 +122,12 @@ export class RestMealsPage {
         quantity: newNum
       });
     }
+    let toast = this.toast.create({
+          message: 'Your order have been submitted' ,
+          duration: 3000,
+          position: 'top'
+        });
+    toast.present();
     this.navCtrl.pop();
   }
   
@@ -124,7 +136,20 @@ export class RestMealsPage {
       email : this.user.email,
       rating: this.rate
     });
+    if (this.comment) {
+    this.db.object('/restaurants/'+this.restaurant.name+'/reviews/'+this.user.phone).set({
+      email : this.user.email,
+      review: this.comment
+    });
+  }
 
+    this.comment = null;
+    let toast = this.toast.create({
+      message: 'Your review have been submitted' ,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
     if (this.comment) {
       this.db.object('/restaurants/'+this.restaurant.name+'/reviews/'+this.user.phone).set({
         email : this.user.email,

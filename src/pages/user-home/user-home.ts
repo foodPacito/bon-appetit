@@ -21,23 +21,24 @@ export class UserHomePage {
   isNew;
   slides = [
     {
-      title: "Welcome to the Docs!",
-      description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic.",
+      title: "How to order ?",
+      description: "choose your favourite restuarant ..",
       image: "https://i.imgur.com/61v15nH.jpg",
     },
     {
-      title: "What is Ionic?",
-      description: "<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.",
-      image: "https://i.imgur.com/MohQa6R.jpg",
-    },
-    {
-      title: "What is Ionic Cloud?",
-      description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
+      title: "How to order ?",
+      description: "pick your favourite meal ..",
       image: "https://i.imgur.com/F6haW7S.jpg",
     },
     {
-      title: "What is Ionic Cloud?",
-      description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
+      title: "How to order ?",
+      description: "choose a pickup method, then fill the information ..",
+      image: "https://i.imgur.com/MohQa6R.jpg",
+      
+    },
+    {
+      title: "How to order ?",
+      description: "you can also rate the restuarant to tell other users about your experience",
       image: "https://i.imgur.com/LDLEPZl.jpg",
     }
   ];
